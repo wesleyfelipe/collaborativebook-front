@@ -53,26 +53,27 @@ var Login = function () {
                         if (label.attr("generated")) {
                             label.html(message);
                         }
-                    } else {
-                        // create label
-                        label = $("<" + this.settings.errorElement + "/>")
-                                .attr({"for": this.idOrName(element), generated: true})
-                                .addClass(this.settings.errorClass)
-                                .addClass('help-block')
-                                .html(message || "");
-                        if (this.settings.wrapper) {
-                            // make sure the element is visible, even in IE
-                            // actually showing the wrapped element is handled elsewhere
-                            label = label.hide().show().wrap("<" + this.settings.wrapper + "/>").parent();
-                        }
-                        if (!this.labelContainer.append(label).length) {
-                            if (this.settings.errorPlacement) {
-                                this.settings.errorPlacement(label, $(element));
-                            } else {
-                                label.insertAfter(element);
-                            }
-                        }
                     }
+//                    else {
+//                        // create label
+//                        label = $("<" + this.settings.errorElement + "/>")
+//                                .attr({"for": this.idOrName(element), generated: true})
+//                                .addClass(this.settings.errorClass)
+//                                .addClass('help-block')
+//                                .html(message || "");
+//                        if (this.settings.wrapper) {
+//                            // make sure the element is visible, even in IE
+//                            // actually showing the wrapped element is handled elsewhere
+//                            label = label.hide().show().wrap("<" + this.settings.wrapper + "/>").parent();
+//                        }
+//                        if (!this.labelContainer.append(label).length) {
+//                            if (this.settings.errorPlacement) {
+//                                this.settings.errorPlacement(label, $(element));
+//                            } else {
+//                                label.insertAfter(element);
+//                            }
+//                        }
+//                    }
                     if (!message && this.settings.success) {
                         label.text("");
                         if (typeof this.settings.success === "string") {
@@ -91,8 +92,28 @@ var Login = function () {
      * Validation for Login
      * * * * * * * * * * * */
     var initLoginValidation = function () {
+        
+        //SOLUCAO PROVISORIA DE AUTENTICACAO. SERVICO DE AUTENTICACAO FICARA A CARGO DO SERVER.
+        jQuery.validator.addMethod("usernameValido",function(){
+            return localStorage.getItem("username") === $("input:text[name=username]").val()
+        });
+        
+        jQuery.validator.addMethod("senhaValida",function(){
+            return localStorage.getItem("password") === $("input:password[name=password]").val()
+        });
+        
+        
         if ($.validator) {
             $('.login-form').validate({
+                //VALIDACAO DE USUARIO E SENHA QUE ESTAO EM LOCALSTORAGE (SERA ALTERADO POSTERIORMENTE)
+                rules: {
+                    username: {
+                        usernameValido: true
+                    },
+                    password: {
+                        senhaValida: true
+                    }
+                },
                 invalidHandler: function (event, validator) { // display error alert on form submit
                     NProgress.start(); // Demo Purpose Only!
                     $('.login-form .alert-danger').show();
@@ -100,9 +121,6 @@ var Login = function () {
                 },
                 submitHandler: function (form) {
                     window.location.href = "index.html";
-
-                    // Maybe you want here something like:
-                    // $(form).submit();
                 }
             });
         }
