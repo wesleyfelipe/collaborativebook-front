@@ -99,6 +99,9 @@ var Cadastro = function () {
                     },
                     password_confirmation: {
                         equalTo: $("#password")
+                    },
+                    data_nascimento: {
+                        date: true
                     }
                 },
                 invalidHandler: function (event, validator) { // display error alert on form submit
@@ -113,7 +116,7 @@ var Cadastro = function () {
                     localStorage.setItem("username", $("input:text[name=username]").val());
                     localStorage.setItem("email", $("input[name=email]").val());
                     localStorage.setItem("password", $("input:password[name=password]").val());
-                    localStorage.setItem("dataNascimento", $("input:text[name=data-nascimento]").val());
+                    localStorage.setItem("dataNascimento", $("input:text[name=data_nascimento]").val());
                     localStorage.setItem("genero", $("input:radio[name=genero]:checked").val());
 
                     window.location.href = "index.html";
