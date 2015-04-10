@@ -90,6 +90,14 @@ var Cadastro = function () {
     var initCadastroValidation = function () {
         if ($.validator) {
             $('.cadastro-usuario-form').validate({
+                rules: {
+                    password: {
+                        minlength: 8
+                    },
+                    password_confirmation: {
+                        equalTo: $("#password")
+                    }                    
+                },
                 invalidHandler: function (event, validator) { // display error alert on form submit
                     NProgress.start(); // Demo Purpose Only!
                     $('.cadastro-usuario-form .alert-danger').show();

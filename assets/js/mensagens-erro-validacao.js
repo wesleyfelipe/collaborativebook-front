@@ -8,7 +8,7 @@ jQuery.extend(jQuery.validator.messages, {
     number: "Por favor, informe um número válido.",
     digits: "Por favor, informe apenas dígitos.",
     creditcard: "Por favor, informe um número valido de cartão de crédito.",
-    equalTo: "Por favor, informe o mesmo valor novamente.",
+    equalTo: "Os valores informados não correspondem.",
     accept: "Por favor, informe um valor com a extensão válida.",
     maxlength: jQuery.validator.format("Por favor, não informe mais do que {0} caracteres."),
     minlength: jQuery.validator.format("Por favor, informe ao menos {0} caracteres."),

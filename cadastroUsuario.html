@@ -33,7 +33,7 @@
 
         <!-- Form Validation -->
         <script type="text/javascript" src="plugins/validation/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="assets/js/mensagensErroValidacao.js"></script>
+        <script type="text/javascript" src="assets/js/mensagens-erro-validacao.js"></script>
 
         <!-- Slim Progress Bars -->
         <script type="text/javascript" src="plugins/nprogress/nprogress.js"></script>
@@ -54,7 +54,7 @@
         <!-- Logo -->
         <div class="logo">
             <img src="assets/img/logo.png" alt="logo" />
-            <strong>COLABORATIVE BOOK</strong>
+            <strong>Colaborative Book</strong>
         </div>
         <!-- /Logo -->
 
@@ -94,13 +94,13 @@
                     <div class="form-group">
                         <div class="input-icon">
                             <i class="icon-lock"></i>
-                            <input type="password" name="password" class="form-control" placeholder="Nova senha" data-rule-required="true" data-msg-required="Por favor, informe uma senha." />
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Nova senha" data-rule-required="true" data-msg-required="Por favor, informe uma senha." />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-icon">
                             <i class="icon-lock"></i>
-                            <input type="password" name="password-confirmation" class="form-control" placeholder="Confirme sua senha" data-rule-required="true" data-msg-required="Por favor, confirme a sua senha." />
+                            <input type="password" name="password_confirmation" class="form-control" placeholder="Confirme sua senha" data-rule-required="true" data-msg-required="Por favor, confirme a sua senha."/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -112,8 +112,8 @@
                     <div class="form-group">
                         <div >
                             Gênero:
-                            <div class="genero-radio" data-msg-required="Por favor, informe seu gênero." >
-                                <input type="radio" name="genero" data-rule-required="true"/> Masculino
+                            <div class="genero-radio">
+                                <input type="radio" name="genero" data-rule-required="true" checked/> Masculino
                                 <br>
                                 <input type="radio" name="genero" data-rule-required="true" /> Feminino
                             </div>
