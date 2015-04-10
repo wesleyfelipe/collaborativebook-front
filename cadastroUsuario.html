@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Cadastro de Usuário | Colaborative</title>
@@ -38,6 +33,7 @@ and open the template in the editor.
 
         <!-- Form Validation -->
         <script type="text/javascript" src="plugins/validation/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="assets/js/mensagensErroValidacao.js"></script>
 
         <!-- Slim Progress Bars -->
         <script type="text/javascript" src="plugins/nprogress/nprogress.js"></script>
@@ -80,25 +76,25 @@ and open the template in the editor.
                     <div class="form-group">
                         <div class="input-icon">
                             <i class="icon-star"></i>
-                            <input type="text" name="nome-completo" class="form-control" placeholder="Nome completo" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, digite seu nome completo." />
+                            <input type="text" name="nome-completo" class="form-control" placeholder="Nome completo" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe seu nome completo." />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-icon">
                             <i class="icon-user"></i>
-                            <input type="text" name="username" class="form-control" placeholder="Username" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, digite um nome de usuário." />
+                            <input type="text" name="username" class="form-control" placeholder="Username" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe um nome de usuário." />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-icon">
                             <i class="icon-envelope-alt"></i>
-                            <input type="email" name="email" class="form-control" placeholder="E-mail" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, digite um e-mail válido." />
+                            <input type="email" name="email" class="form-control" placeholder="E-mail" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe um endereço de e-mail." />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-icon">
                             <i class="icon-lock"></i>
-                            <input type="password" name="password" class="form-control" placeholder="Nova senha" data-rule-required="true" data-msg-required="Por favor, digite a senha." />
+                            <input type="password" name="password" class="form-control" placeholder="Nova senha" data-rule-required="true" data-msg-required="Por favor, informe uma senha." />
                         </div>
                     </div>
                     <div class="form-group">
@@ -114,12 +110,12 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="form-group">
-                        <div>
+                        <div >
                             Gênero:
-                            <div class="genero-radio">
-                                <input type="radio" name="genero" data-rule-required="true" data-msg-required="Por favor, informe seu gênero." /> Masculino
+                            <div class="genero-radio" data-msg-required="Por favor, informe seu gênero." >
+                                <input type="radio" name="genero" data-rule-required="true"/> Masculino
                                 <br>
-                                <input type="radio" name="genero" data-rule-required="true" data-msg-required="Por favor, informe seu gênero." /> Feminino
+                                <input type="radio" name="genero" data-rule-required="true" /> Feminino
                             </div>
                         </div>
                     </div>
