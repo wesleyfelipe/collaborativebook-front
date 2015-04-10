@@ -8,120 +8,136 @@ and open the template in the editor.
     <head>
         <title>Cadastro de Usuário | Colaborative</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        
+
         <!--=== CSS ===-->
 
-	<!-- Bootstrap -->
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        
+        <!-- Bootstrap -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
         <!-- Theme -->
-	<link href="assets/css/main.css" rel="stylesheet" type="text/css" />
-	<link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
-	<link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-	<link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        
+        <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+
         <!-- Cadastro de usuario -->
-	<link href="assets/css/cadastro-usuario.css" rel="stylesheet" type="text/css" />
-        
+        <link href="assets/css/cadastro-usuario.css" rel="stylesheet" type="text/css" />
+
         <link rel="stylesheet" href="assets/css/fontawesome/font-awesome.min.css">
-        
+
         <!--=== JavaScript ===-->
 
-	<script type="text/javascript" src="assets/js/libs/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="assets/js/libs/jquery-1.10.2.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="assets/js/libs/lodash.compat.min.js"></script>
-        
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="assets/js/libs/lodash.compat.min.js"></script>
+
         <!-- Beautiful Checkboxes -->
-	<script type="text/javascript" src="plugins/uniform/jquery.uniform.min.js"></script>
-        
+        <script type="text/javascript" src="plugins/uniform/jquery.uniform.min.js"></script>
+
         <!-- Form Validation -->
-	<script type="text/javascript" src="plugins/validation/jquery.validate.min.js"></script>
-        
+        <script type="text/javascript" src="plugins/validation/jquery.validate.min.js"></script>
+
         <!-- Slim Progress Bars -->
-	<script type="text/javascript" src="plugins/nprogress/nprogress.js"></script>
-        
+        <script type="text/javascript" src="plugins/nprogress/nprogress.js"></script>
+
+        <!-- App -->
+        <script type="text/javascript" src="assets/js/cadastro-usuario.js"></script>
+        <script>
+            $(document).ready(function () {
+                "use strict";
+
+                Cadastro.init(); // Init cadastro-usuario JavaScript
+            });
+        </script>
+
     </head>
-    
+
     <body class="cadastro-usuario">
-	<!-- Logo -->
-	<div class="logo">
-		<img src="assets/img/logo.png" alt="logo" />
-		<strong>COLABORATIVE BOOK</strong>
-	</div>
-	<!-- /Logo -->
+        <!-- Logo -->
+        <div class="logo">
+            <img src="assets/img/logo.png" alt="logo" />
+            <strong>COLABORATIVE BOOK</strong>
+        </div>
+        <!-- /Logo -->
 
-	<!-- Login Box -->
-	<div class="box">
-		<div class="content">
-			<!-- Formulario de cadastro -->
-			<form class="form-vertical cadastro-usuario-form" action="index.html" method="post">
-				<!-- Title -->
-				<h3 class="form-title">Cadastro de usuário</h3>
+        <!-- Cadastro Box -->
+        <div class="box">
+            <div class="content">
+                <!-- Formulario de cadastro -->
+                <form class="form-vertical cadastro-usuario-form" action="index.html" method="post">
+                    <!-- Title -->
+                    <h3 class="form-title">Cadastro de usuário</h3>
 
-				<!-- Error Message -->
-				<div class="alert fade in alert-danger" style="display: none;">
-					<i class="icon-remove close" data-dismiss="alert"></i>
-					Corrija os erros de cadastro.
-				</div>
+                    <!-- Error Message -->
+                    <div class="alert fade in alert-danger" style="display: none;">
+                        <i class="icon-remove close" data-dismiss="alert"></i>
+                        Corrija os erros de cadastro.
+                    </div>
 
-				<!-- Input Fields -->
-				<div class="form-group">
-					<div class="input-icon">
-						<i class="icon-star"></i>
-						<input type="text" name="nome-completo" class="form-control" placeholder="Nome completo" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, digite seu nome completo." />
-					</div>
-				</div>
-                                <div class="form-group">
-					<div class="input-icon">
-						<i class="icon-user"></i>
-						<input type="text" name="username" class="form-control" placeholder="Username" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, digite um nome de usuário." />
-					</div>
-				</div>
-                                <div class="form-group">
-					<div class="input-icon">
-						<i class="icon-envelope-alt"></i>
-						<input type="email" name="email" class="form-control" placeholder="E-mail" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, digite um e-mail válido." />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="input-icon">
-						<i class="icon-lock"></i>
-						<input type="password" name="password" class="form-control" placeholder="Nova senha" data-rule-required="true" data-msg-required="Por favor, digite a senha." />
-					</div>
-				</div>
-                                <div class="form-group">
-					<div class="input-icon">
-						<i class="icon-lock"></i>
-						<input type="password" name="password-confirmation" class="form-control" placeholder="Confirme sua senha" data-rule-required="true" data-msg-required="Por favor, confirme a sua senha." />
-					</div>
-				</div>
-                                <div class="form-group">
-					<div class="input-icon">
-						<i class="icon-lock"></i>
-						<input type="date" name="data-nascimento" class="form-control" placeholder="Data de nascimento" data-rule-required="true" data-msg-required="Por favor, informe a sua data de nascimento." />
-					</div>
-				</div>
-				<!-- /Input Fields -->
+                    <!-- Input Fields -->
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="icon-star"></i>
+                            <input type="text" name="nome-completo" class="form-control" placeholder="Nome completo" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, digite seu nome completo." />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="icon-user"></i>
+                            <input type="text" name="username" class="form-control" placeholder="Username" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, digite um nome de usuário." />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="icon-envelope-alt"></i>
+                            <input type="email" name="email" class="form-control" placeholder="E-mail" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, digite um e-mail válido." />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="icon-lock"></i>
+                            <input type="password" name="password" class="form-control" placeholder="Nova senha" data-rule-required="true" data-msg-required="Por favor, digite a senha." />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="icon-lock"></i>
+                            <input type="password" name="password-confirmation" class="form-control" placeholder="Confirme sua senha" data-rule-required="true" data-msg-required="Por favor, confirme a sua senha." />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="icon-calendar"></i>
+                            <input type="text" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="data-nascimento" id="datepicker" class="form-control" placeholder="Data de nascimento" data-rule-required="true" data-msg-required="Por favor, informe a sua data de nascimento." />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            Gênero:
+                            <div class="genero-radio">
+                                <input type="radio" name="genero" data-rule-required="true" data-msg-required="Por favor, informe seu gênero." /> Masculino
+                                <br>
+                                <input type="radio" name="genero" data-rule-required="true" data-msg-required="Por favor, informe seu gênero." /> Feminino
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Input Fields -->
 
-				<!-- Form Actions -->
-				<div class="form-actions">
-					<button type="submit" class="submit btn btn-primary pull-right">
-						Entrar <i class="icon-angle-right"></i>
-					</button>
-				</div>
-			</form>
-			<!-- /Login Formular -->
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="submit" class="submit btn btn-primary pull-right">
+                            Cadastrar <i class="icon-angle-right"></i>
+                        </button>
+                    </div>
+                </form>
+                <!-- /Formulario de cadastro -->
 
-		</div> <!-- /.content -->
+            </div> <!-- /.content -->
 
-	</div>
-	<!-- /Login Box -->
+        </div>
+        <!-- /Cadastro Box -->
 
-	<!-- /Single-Sign-On (SSO) -->
-
-	<!-- Footer -->
-	
-	<!-- /Footer -->
-</body>
+    </body>
 </html>

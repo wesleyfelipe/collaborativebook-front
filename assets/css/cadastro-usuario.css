@@ -154,6 +154,13 @@
 .cadastro-usuario .single-sign-on:hover {
   opacity: 1;
 }
+
+.cadastro-usuario .genero-radio{
+    display: inline-block;
+    vertical-align: text-top;
+    padding-left: 15px;
+}
+
 .cadastro-usuario .single-sign-on span {
   text-transform: uppercase;
   font-weight: 600;
