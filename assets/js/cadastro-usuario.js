@@ -87,6 +87,9 @@ var Cadastro = function () {
         }
     }
 
+    /* * * * * * * * * * * *
+     * Validacao de cadastro
+     * * * * * * * * * * * */
     var initCadastroValidation = function () {
         if ($.validator) {
             $('.cadastro-usuario-form').validate({
@@ -96,7 +99,7 @@ var Cadastro = function () {
                     },
                     password_confirmation: {
                         equalTo: $("#password")
-                    }                    
+                    }
                 },
                 invalidHandler: function (event, validator) { // display error alert on form submit
                     NProgress.start(); // Demo Purpose Only!
@@ -104,10 +107,16 @@ var Cadastro = function () {
                     NProgress.done(); // Demo Purpose Only!
                 },
                 submitHandler: function (form) {
-                    window.location.href = "index.html";
 
-                    // Maybe you want here something like:
-                    // $(form).submit();
+                    //ARMAZENANDO NOVO USUARIO EM LOCALSTORAGE (POSTERIORMENTE SERÁ ALTERADO)
+                    localStorage.setItem("nomeCompleto", $("input:text[name=nome-completo]").val());
+                    localStorage.setItem("username", $("input:text[name=username]").val());
+                    localStorage.setItem("email", $("input[name=email]").val());
+                    localStorage.setItem("password", $("input:password[name=password]").val());
+                    localStorage.setItem("dataNascimento", $("input:text[name=data-nascimento]").val());
+                    localStorage.setItem("genero", $("input:radio[name=genero]:checked").val());
+
+                    window.location.href = "index.html";
                 }
             });
         }
