@@ -13,6 +13,8 @@ var Perfil = function () {
         var data = localStorage.getItem("dataNascimento");
         $("span#nascimento").text(formatarData(data));
         $("span#genero").text(localStorage.getItem("genero"));
+        var imgPerfil = localStorage.getItem("imagemPerfil");
+        $("img#img-perfil").attr("src",imgPerfil);
     };
 
     var editarPerfil = function () {

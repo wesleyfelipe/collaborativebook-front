@@ -118,7 +118,7 @@ var Cadastro = function () {
                     localStorage.setItem("password", $("input:password[name=password]").val());
                     localStorage.setItem("dataNascimento", $("input:text[name=data_nascimento]").val());
                     localStorage.setItem("genero", $("input:radio[name=genero]:checked").val());
-
+                    localStorage.setItem("imagemPerfil","assets/img/default_avatar.png")
                     window.location.href = "index.html";
                 }
             });
