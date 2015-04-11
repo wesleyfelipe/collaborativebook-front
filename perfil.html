@@ -84,6 +84,11 @@
                             Meus livros
                         </a>
                     </li>
+                    <li>
+                        <a href="#">
+                            Biblioteca pública
+                        </a>
+                    </li>
                 </ul>
                 <!-- /Top Left Menu -->
 
@@ -115,30 +120,52 @@
                 <!--=== Page Header ===-->
                 <div class="page-header">
                     <div class="page-title ">
+                        
                         </br>
                         <h2>Informações de perfil</h2>
 
                         </br>
-                        <label for="span#username">Username</label>
+                        <label for="#username">Username</label>
                         <span id="username">Username</span>
+                        
                         </br>
-                        <label for="span#nome">Nome</label>
-                        <span id="nome">Nome</span>
+                        <label for="#nome">Nome</label>
+                        <span id="nome" class="info-editavel">Nome</span>
+                        <input type="text" id="nome" name="nome-completo" class="form-control form-edit hidden" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe seu nome completo."/>
+                        
                         </br>
-                        <label for="span#email">E-mail</label>
-                        <span id="email">E-mail</span>
+                        <label for="#email">E-mail</label>
+                        <span id="email" class="info-editavel">E-mail</span>
+                        <input type="email" id="email" name="email" class="form-control form-edit hidden" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe um endereço de e-mail."/>
+                        
                         </br>
-                        <label for="span#nascimento">Data de nascimento</label>
-                        <span id="nascimento">Data</span>
+                        <label for="#nascimento">Data de nascimento</label>
+                        <span id="nascimento" class="info-editavel">Data</span>
+                        <input type="text" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="data_nascimento" id="nascimento" class="form-control form-edit hidden" placeholder="Data de nascimento" data-rule-required="true" data-msg-required="Por favor, informe a sua data de nascimento." />
+                        
                         </br>
-                        <label for="span#genero">Gênero</label>
-                        <span id="genero">Gênero</span>
+                        <label for="#genero">Gênero</label>
+                        <span id="genero" class="info-editavel">Gênero</span>
+                        <div class="form-edit hidden" id="genero">
+                                <input type="radio" name="genero" data-rule-required="true" id="masculino" value="masculino"/> Masculino
+                                <br>
+                                <input type="radio" name="genero" data-rule-required="true" id="feminino" value="feminino"/> Feminino
+                            </div>
+                        
                     </div>
                 </div>
                 <!-- /Page Header -->
 
                 <button type="submit" id="editar-perfil" class="submit btn btn-primary pull-left">
                     Editar 
+                </button>
+                
+                <button type="submit" id="salvar-alteracoes" class="submit btn btn-primary pull-left hidden">
+                    Salvar 
+                </button>
+                
+                <button type="submit" id="cancelar-alteracoes" class="submit btn btn-primary pull-left hidden">
+                    Cancelar 
                 </button>
 
             </div>

@@ -11,7 +11,7 @@ img#img-perfil{
     margin-left: 70px;
 }
 
-button#editar-perfil{
+button{
     color: #fff;
     background-color:#428bca;
     border-color:#357ebd;
