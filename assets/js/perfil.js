@@ -29,7 +29,9 @@ var Perfil = function () {
             //populando campos de input
             $("input#nome").attr("value", localStorage.getItem("nomeCompleto"));
             $("input#email").attr("value", localStorage.getItem("email"));
-            $("input#nascimento").attr("value", formatarData(localStorage.getItem("dataNascimento")));
+            
+            
+            $("input#nascimento").attr("value", localStorage.getItem("dataNascimento"));
 
             if (localStorage.getItem("genero") === "masculino") {
                 $("input#masculino").prop("checked", true);
@@ -62,8 +64,10 @@ var Perfil = function () {
     var salvarAlteracoes = function () {
         //ARMAZENANDO EM LOCALSTORAGE (POSTERIORMENTE SERÁ ALTERADO)
         localStorage.setItem("nomeCompleto", $("input:text[name=nome-completo]").val());
-        localStorage.setItem("email", $("input[name=email]").val())
-        localStorage.setItem("dataNascimento", $("input:text[name=data_nascimento]").val());
+        localStorage.setItem("email", $("input[name=email]").val());
+
+        localStorage.setItem("dataNascimento", $("input#nascimento").val());
+
         localStorage.setItem("genero", $("input:radio[name=genero]:checked").val());
     };
 
