@@ -10,7 +10,8 @@ var Perfil = function () {
         $("span#username").text(localStorage.getItem("username"));
         $("span#nome").text(localStorage.getItem("nomeCompleto"));
         $("span#email").text(localStorage.getItem("email"));
-        $("span#nascimento").text(localStorage.getItem("dataNascimento"));
+        var data = localStorage.getItem("dataNascimento");
+        $("span#nascimento").text(formatarData(data));
         $("span#genero").text(localStorage.getItem("genero"));
     };
 
@@ -28,7 +29,7 @@ var Perfil = function () {
             //populando campos de input
             $("input#nome").attr("value", localStorage.getItem("nomeCompleto"));
             $("input#email").attr("value", localStorage.getItem("email"));
-            $("input#nascimento").attr("value", localStorage.getItem("dataNascimento"));
+            $("input#nascimento").attr("value", formatarData(localStorage.getItem("dataNascimento")));
 
             if (localStorage.getItem("genero") === "masculino") {
                 $("input#masculino").prop("checked", true);
@@ -43,12 +44,12 @@ var Perfil = function () {
     };
 
     var cancelarAlteracoes = function () {
-        $("button#cancelar-alteracoes").click( function(){
+        $("button#cancelar-alteracoes").click(function () {
             //visibilidade dos botoes
             $(this).addClass("hidden");
             $("button#cancelar-alteracoes").addClass("hidden");
             $("button#editar-perfil").removeClass("hidden");
-            
+
             //populando campos de perfl
             preencherInfoPerfil();
             //exibindo infos do perfil
@@ -70,6 +71,11 @@ var Perfil = function () {
 
     };
 
+    var formatarData = function (data) {
+        var dataArr = data.split("-")
+        return dataArr[2] + '/' + dataArr[1] + '/' + dataArr[0];
+    };
+
     var confirmarAlteracoes = function () {
         $("button#salvar-alteracoes").click(function () {
             //visibilidade dos botoes
@@ -79,7 +85,7 @@ var Perfil = function () {
 
             validarAlteracoes();
             salvarAlteracoes();
-            
+
             //populando campos de perfl
             preencherInfoPerfil();
             //exibindo infos do perfil
