@@ -1,0 +1,19 @@
+img#img-perfil{
+    float: left;
+    margin: 20px;
+    margin-top: 120px;
+    width: 250px;
+    height: 250px;
+    border: solid 2px gray;
+}
+
+.page-header{
+    margin-left: 70px;
+}
+
+button#editar-perfil{
+    color: #fff;
+    background-color:#428bca;
+    border-color:#357ebd;
+    margin-left: 70px;
+}
