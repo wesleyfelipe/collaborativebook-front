@@ -47,7 +47,7 @@ var Perfil = function () {
         $("button#cancelar-alteracoes").click(function () {
             //visibilidade dos botoes
             $(this).addClass("hidden");
-            $("button#cancelar-alteracoes").addClass("hidden");
+            $("button#salvar-alteracoes").addClass("hidden");
             $("button#editar-perfil").removeClass("hidden");
 
             //populando campos de perfl
