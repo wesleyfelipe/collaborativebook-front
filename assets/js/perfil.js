@@ -66,6 +66,7 @@ var Perfil = function () {
     var confirmarAlteracoes = function () {
         $("button#salvar-alteracoes").click(function () {
             
+            //validarAlterações();
             salvarAlteracoes();
 
             //populando campos de perfl
