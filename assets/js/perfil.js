@@ -22,19 +22,17 @@ var Perfil = function () {
 
             //ocultando campos de apresentacao
             $("div#apresentacaoPerfil").addClass("hidden");
-
+            
             //populando campos de input
             $("input#nome").attr("value", localStorage.getItem("nomeCompleto"));
             $("input#email").attr("value", localStorage.getItem("email"));
-            
             $("input#nascimento").attr("value", localStorage.getItem("dataNascimento"));
-
             if (localStorage.getItem("genero") === "masculino") {
                 $("input#masculino").prop("checked", true);
             } else {
                 $("input#feminino").prop("checked", true);
             }
-
+            
             //exibindo campos de input
             $("form.perfil-form").removeClass("hidden");
 
@@ -44,9 +42,9 @@ var Perfil = function () {
     var cancelarAlteracoes = function () {
         $("button#cancelar-alteracoes").click(function () {
             //escondendo campos de edicao
-            $(".form.perfil-form").addClass("hidden");
+            $(".form.perfil-form").hide(0);
             //exibindo infos do perfil
-            $("div#apresentacaoPerfil").removeClass("hidden");
+            $("div#apresentacaoPerfil").show(5);
         });
     };
 
