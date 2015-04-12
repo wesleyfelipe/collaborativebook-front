@@ -54,26 +54,6 @@ var Login = function () {
                             label.html(message);
                         }
                     }
-//                    else {
-//                        // create label
-//                        label = $("<" + this.settings.errorElement + "/>")
-//                                .attr({"for": this.idOrName(element), generated: true})
-//                                .addClass(this.settings.errorClass)
-//                                .addClass('help-block')
-//                                .html(message || "");
-//                        if (this.settings.wrapper) {
-//                            // make sure the element is visible, even in IE
-//                            // actually showing the wrapped element is handled elsewhere
-//                            label = label.hide().show().wrap("<" + this.settings.wrapper + "/>").parent();
-//                        }
-//                        if (!this.labelContainer.append(label).length) {
-//                            if (this.settings.errorPlacement) {
-//                                this.settings.errorPlacement(label, $(element));
-//                            } else {
-//                                label.insertAfter(element);
-//                            }
-//                        }
-//                    }
                     if (!message && this.settings.success) {
                         label.text("");
                         if (typeof this.settings.success === "string") {

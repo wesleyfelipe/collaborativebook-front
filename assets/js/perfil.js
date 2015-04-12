@@ -20,7 +20,7 @@ var Perfil = function () {
     var editarPerfil = function () {
         $("button#editar-perfil").click(function () {
             //ocultando campos de apresentacao
-            $("div#apresentacaoPerfil").addClass("hidden");
+            $("div#apresentacao-perfil").addClass("hidden");
             //populando campos de input
             $("input#nome").attr("value", localStorage.getItem("nomeCompleto"));
             $("input#email").attr("value", localStorage.getItem("email"));
@@ -32,7 +32,15 @@ var Perfil = function () {
             }
             //exibindo campos de input
             $("form.perfil-form").removeClass("hidden");
-            
+
+        });
+    };
+
+    var alterarSenha = function () {
+        $("button#alterar-senha").click(function () {
+            //ocultando campos de apresentacao
+            $("div#apresentacao-perfil").addClass("hidden");
+            $("form.alterar-senha-form").removeClass("hidden");
         });
     };
 
@@ -48,7 +56,7 @@ var Perfil = function () {
         var dataArr = data.split("-")
         return dataArr[2] + '/' + dataArr[1] + '/' + dataArr[0];
     };
-    
+
     var confirmarAlteracoes = function () {
         //validarAlterações();
         salvarAlteracoes();
@@ -57,10 +65,17 @@ var Perfil = function () {
         //exibindo infos do perfil
         $("form.perfil-form").addClass("hidden");
         //escondendo campos de edicao
-        $("div#apresentacaoPerfil").removeClass("hidden");
+        $("div#apresentacao-perfil").removeClass("hidden");
     };
 
-
+    var confirmarAlteracaoSenha = function () {
+        //SOLUCAO TEMPORARIA
+        localStorage.setItem("password", $("input:password[name=new_password]").val());
+        //exibindo infos do perfil
+        $("form.alterar-senha-form").addClass("hidden");
+        //escondendo campos de edicao
+        $("div#apresentacao-perfil").removeClass("hidden");
+    };
 
     /* * * * * * * * * * * *
      * Validation Defaults
@@ -144,7 +159,7 @@ var Perfil = function () {
     }
 
     /* * * * * * * * * * * *
-     * Validacao de cadastro
+     * Validacao de alteracao de perfil
      * * * * * * * * * * * */
     var initPerfilValidation = function () {
         if ($.validator) {
@@ -165,18 +180,56 @@ var Perfil = function () {
                 }
             });
         }
-    }
+    };
+
+    /* * * * * * * * * * * *
+     * Validacao de alteracao de senha
+     * * * * * * * * * * * */
+    var initAlteracaoSenhaValidation = function () {
+        //SOLUCAO PROVISORIA DE AUTENTICACAO. SERVICO DE AUTENTICACAO FICARA A CARGO DO SERVER.
+
+        jQuery.validator.addMethod("senhaValida", function () {
+            return localStorage.getItem("password") === $("input:password[name=password]").val()
+        }, "Senha inválida.");
+
+        if ($.validator) {
+            $('.alterar-senha-form').validate({
+                rules: {
+                    password: {
+                        senhaValida: true
+                    },
+                    new_password: {
+                        minlength: 8
+                    },
+                    password_confirmation: {
+                        equalTo: $("#new_password")
+                    }
+                },
+                invalidHandler: function (event, validator) { // display error alert on form submit
+                    NProgress.start(); // Demo Purpose Only!
+                    $('.alterar-senha-form .alert-danger').show();
+                    NProgress.done(); // Demo Purpose Only!
+                },
+                submitHandler: function (form) {
+                    confirmarAlteracaoSenha();
+                    $('.alterar-senha-form .alert-danger').hide();
+                }
+            });
+        }
+    };
 
     return {
         // main function to initiate all plugins
         init: function () {
-                
+
             initValidationDefaults();
             initPerfilValidation();
-            
+            initAlteracaoSenhaValidation();
+
             preencherInfoPerfil();
             editarPerfil();
-            
+            alterarSenha();
+
         }
     };
 

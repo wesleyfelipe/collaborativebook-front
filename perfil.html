@@ -111,7 +111,7 @@
         <div id="content">
 
             <!--=== Info Perfil ===-->
-            <div class="perfil-info" id="apresentacaoPerfil">
+            <div class="perfil-info" id="apresentacao-perfil">
 
                 <br>
                 <h2>Informações de perfil</h2>
@@ -140,7 +140,11 @@
                 <br>
 
                 <button id="editar-perfil" class="btn btn-primary pull-left">
-                    Editar
+                    Editar informações de perfil
+                </button>
+                
+                <button id="alterar-senha" class="btn btn-primary pull-left">
+                    Alterar senha
                 </button>
 
             </div>
@@ -150,7 +154,7 @@
             <form class="perfil-form perfil-info hidden" method="post">
 
                 <br>
-                <h2>Informações de perfil</h2>
+                <h2>Editar perfil</h2>
 
                 <br>
                 <!-- Error Message -->
@@ -202,6 +206,56 @@
                 <div class="buttons">
                     <button id="salvar-alteracoes" type="submit" class="btn btn-primary pull-left">
                         Confirmar
+                    </button>
+                </div>
+            </form>
+
+            <!--=== Alteração de senha ===-->
+            <form class="alterar-senha-form perfil-info hidden" method="post">
+
+                <br>
+                <h2>Alteração de senha</h2>
+
+                <br>
+                <!-- Error Message -->
+                <div class="alert fade in alert-danger" style="display: none;">
+                    <i class="icon-remove close" data-dismiss="alert"></i>
+                    Corrija os erros.
+                </div>
+
+                <!-- Input Fields -->
+                <div class="form-group">
+                    <div class="input-icon">
+                        <label for="#password"  class="form-edit">Senha atual</label>
+                        <i class="icon-lock"></i>
+                        <input type="password" name="password" id="password" class="form-control form-edit" placeholder="Senha atual" data-rule-required="true" data-msg-required="Por favor, informe a sua senha." />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-icon">
+                        <label for="#password"  class="form-edit">Nova senha</label>
+                        <i class="icon-lock"></i>
+                        <input type="password" name="new_password" id="new_password" class="form-control form-edit" placeholder="Nova senha" data-rule-required="true" data-msg-required="Por favor, informe uma nova senha." />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-icon">
+                        <label for="#password"  class="form-edit">Confirmar nova senha</label>
+                        <i class="icon-lock"></i>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-edit" placeholder="Confirme sua nova senha" data-rule-required="true" data-msg-required="Por favor, confirme sua nova senha." />
+                    </div>
+                </div>
+
+                <!-- /Input Fields -->
+
+                <br>
+
+                <!-- Form Actions -->
+                <div class="buttons">
+                    <button id="confirmar-alteracao-senha" type="submit" class="btn btn-primary pull-left">
+                        Alterar
                     </button>
                 </div>
             </form>
