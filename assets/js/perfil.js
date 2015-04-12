@@ -43,6 +43,22 @@ var Perfil = function () {
             $("form.alterar-senha-form").removeClass("hidden");
         });
     };
+    
+    var cancelarAlteracaoSenha = function(){
+        $("button#cancelar-alteracao-senha").click(function(){
+            //ocultando campos de apresentacao
+            $("form.alterar-senha-form").addClass("hidden");
+            $("div#apresentacao-perfil").removeClass("hidden");
+        });
+    };
+    
+    var cancelarAlteracaoPerfil = function(){
+        $("button#cancelar-alteracao-perfil").click(function(){
+            //ocultando campos de apresentacao
+            $("form.perfil-form").addClass("hidden");
+            $("div#apresentacao-perfil").removeClass("hidden");
+        });
+    };
 
     var salvarAlteracoes = function () {
         //ARMAZENANDO EM LOCALSTORAGE (POSTERIORMENTE SERÁ ALTERADO)
@@ -229,6 +245,8 @@ var Perfil = function () {
             preencherInfoPerfil();
             editarPerfil();
             alterarSenha();
+            cancelarAlteracaoSenha();
+            cancelarAlteracaoPerfil();
 
         }
     };
