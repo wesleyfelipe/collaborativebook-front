@@ -20,18 +20,12 @@ var Perfil = function () {
     var editarPerfil = function () {
         $("button#editar-perfil").click(function () {
 
-            //visibilidade botões
-            $(this).addClass("hidden");
-            $("button#salvar-alteracoes").removeClass("hidden");
-            $("button#cancelar-alteracoes").removeClass("hidden");
-
             //ocultando campos de apresentacao
-            $("span.info-editavel").addClass("hidden");
+            $("div#apresentacaoPerfil").addClass("hidden");
 
             //populando campos de input
             $("input#nome").attr("value", localStorage.getItem("nomeCompleto"));
             $("input#email").attr("value", localStorage.getItem("email"));
-            
             
             $("input#nascimento").attr("value", localStorage.getItem("dataNascimento"));
 
@@ -42,24 +36,17 @@ var Perfil = function () {
             }
 
             //exibindo campos de input
-            $(".form-edit").removeClass("hidden");
+            $("form.perfil-form").removeClass("hidden");
 
         });
     };
 
     var cancelarAlteracoes = function () {
         $("button#cancelar-alteracoes").click(function () {
-            //visibilidade dos botoes
-            $(this).addClass("hidden");
-            $("button#salvar-alteracoes").addClass("hidden");
-            $("button#editar-perfil").removeClass("hidden");
-
-            //populando campos de perfl
-            preencherInfoPerfil();
-            //exibindo infos do perfil
-            $(".form-edit").addClass("hidden");
             //escondendo campos de edicao
-            $("span.info-editavel").removeClass("hidden");
+            $(".form.perfil-form").addClass("hidden");
+            //exibindo infos do perfil
+            $("div#apresentacaoPerfil").removeClass("hidden");
         });
     };
 
@@ -73,10 +60,6 @@ var Perfil = function () {
         localStorage.setItem("genero", $("input:radio[name=genero]:checked").val());
     };
 
-    var validarAlteracoes = function () {
-
-    };
-
     var formatarData = function (data) {
         var dataArr = data.split("-")
         return dataArr[2] + '/' + dataArr[1] + '/' + dataArr[0];
@@ -84,26 +67,128 @@ var Perfil = function () {
 
     var confirmarAlteracoes = function () {
         $("button#salvar-alteracoes").click(function () {
-            //visibilidade dos botoes
-            $(this).addClass("hidden");
-            $("button#cancelar-alteracoes").addClass("hidden");
-            $("button#editar-perfil").removeClass("hidden");
-
-            validarAlteracoes();
+            
             salvarAlteracoes();
 
             //populando campos de perfl
             preencherInfoPerfil();
             //exibindo infos do perfil
-            $(".form-edit").addClass("hidden");
+            $("form.perfil-form").addClass("hidden");
             //escondendo campos de edicao
-            $("span.info-editavel").removeClass("hidden");
+            $("div#apresentacaoPerfil").removeClass("hidden");
         });
     };
+    
+     /* * * * * * * * * * * *
+     * Validation Defaults
+     * * * * * * * * * * * */
+    var initValidationDefaults = function () {
+        if ($.validator) {
+            // Set default options
+            $.extend($.validator.defaults, {
+                errorClass: "has-error",
+                validClass: "has-success",
+                highlight: function (element, errorClass, validClass) {
+                    if (element.type === 'radio') {
+                        this.findByName(element.name).addClass(errorClass).removeClass(validClass);
+                    } else {
+                        $(element).addClass(errorClass).removeClass(validClass);
+                    }
+                    $(element).closest(".form-group").addClass(errorClass).removeClass(validClass);
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    if (element.type === 'radio') {
+                        this.findByName(element.name).removeClass(errorClass).addClass(validClass);
+                    } else {
+                        $(element).removeClass(errorClass).addClass(validClass);
+                    }
+                    $(element).closest(".form-group").removeClass(errorClass).addClass(validClass);
+
+                    // Fix for not removing label in BS3
+                    $(element).closest('.form-group').find('label[generated="true"]').html('');
+                }
+            });
+
+            var _base_resetForm = $.validator.prototype.resetForm;
+            $.extend($.validator.prototype, {
+                resetForm: function () {
+                    _base_resetForm.call(this);
+                    this.elements().closest('.form-group')
+                            .removeClass(this.settings.errorClass + ' ' + this.settings.validClass);
+                },
+                showLabel: function (element, message) {
+                    var label = this.errorsFor(element);
+                    if (label.length) {
+                        // refresh error/success class
+                        label.removeClass(this.settings.validClass).addClass(this.settings.errorClass);
+
+                        // check if we have a generated label, replace the message then
+                        if (label.attr("generated")) {
+                            label.html(message);
+                        }
+                    } else {
+                        // create label
+                        label = $("<" + this.settings.errorElement + "/>")
+                                .attr({"for": this.idOrName(element), generated: true})
+                                .addClass(this.settings.errorClass)
+                                .addClass('help-block')
+                                .html(message || "");
+                        if (this.settings.wrapper) {
+                            // make sure the element is visible, even in IE
+                            // actually showing the wrapped element is handled elsewhere
+                            label = label.hide().show().wrap("<" + this.settings.wrapper + "/>").parent();
+                        }
+                        if (!this.labelContainer.append(label).length) {
+                            if (this.settings.errorPlacement) {
+                                this.settings.errorPlacement(label, $(element));
+                            } else {
+                                label.insertAfter(element);
+                            }
+                        }
+                    }
+                    if (!message && this.settings.success) {
+                        label.text("");
+                        if (typeof this.settings.success === "string") {
+                            label.addClass(this.settings.success);
+                        } else {
+                            this.settings.success(label, element);
+                        }
+                    }
+                    this.toShow = this.toShow.add(label);
+                }
+            });
+        }
+    }
+
+    /* * * * * * * * * * * *
+     * Validacao de cadastro
+     * * * * * * * * * * * */
+    var initPerfilValidation = function () {
+        if ($.validator) {
+            $('.perfil-form').validate({
+                rules: {
+                    data_nascimento: {
+                        date: true
+                    }
+                },
+                invalidHandler: function (event, validator) { // display error alert on form submit
+                    NProgress.start(); // Demo Purpose Only!
+                    $('.perfil-form .alert-danger').show();
+                    NProgress.done(); // Demo Purpose Only!
+                },
+                submitHandler: function (form) {
+                    salvarAlteracoes();
+                }
+            });
+        }
+    }
 
     return {
         // main function to initiate all plugins
         init: function () {
+            initValidationDefaults();
+            initPerfilValidation();
+            
             preencherInfoPerfil();
             editarPerfil();
             confirmarAlteracoes();

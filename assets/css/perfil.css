@@ -7,8 +7,27 @@ img#img-perfil{
     border: solid 2px gray;
 }
 
-.page-header{
+.perfil-info{
     margin-left: 70px;
+    margin-right: 50px;
+    float: none;
+    padding: 25px 0;
+}
+
+.perfil-form{
+    margin-top: 90px
+}
+
+.btn{
+    margin-left: 0px;
+    margin-right: 20px;
+}
+
+.perfil-info span {
+  display: block;
+  font-size: 11px;
+  color: #888888;
+  font-weight: normal;
 }
 
 button{
