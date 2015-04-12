@@ -14,15 +14,13 @@ var Perfil = function () {
         $("span#nascimento").text(formatarData(data));
         $("span#genero").text(localStorage.getItem("genero"));
         var imgPerfil = localStorage.getItem("imagemPerfil");
-        $("img#img-perfil").attr("src",imgPerfil);
+        $("img#img-perfil").attr("src", imgPerfil);
     };
 
     var editarPerfil = function () {
         $("button#editar-perfil").click(function () {
-
             //ocultando campos de apresentacao
             $("div#apresentacaoPerfil").addClass("hidden");
-            
             //populando campos de input
             $("input#nome").attr("value", localStorage.getItem("nomeCompleto"));
             $("input#email").attr("value", localStorage.getItem("email"));
@@ -32,19 +30,9 @@ var Perfil = function () {
             } else {
                 $("input#feminino").prop("checked", true);
             }
-            
             //exibindo campos de input
             $("form.perfil-form").removeClass("hidden");
-
-        });
-    };
-
-    var cancelarAlteracoes = function () {
-        $("button#cancelar-alteracoes").click(function () {
-            //escondendo campos de edicao
-            $(".form.perfil-form").hide(0);
-            //exibindo infos do perfil
-            $("div#apresentacaoPerfil").show(5);
+            
         });
     };
 
@@ -52,9 +40,7 @@ var Perfil = function () {
         //ARMAZENANDO EM LOCALSTORAGE (POSTERIORMENTE SERÁ ALTERADO)
         localStorage.setItem("nomeCompleto", $("input:text[name=nome-completo]").val());
         localStorage.setItem("email", $("input[name=email]").val());
-
         localStorage.setItem("dataNascimento", $("input#nascimento").val());
-
         localStorage.setItem("genero", $("input:radio[name=genero]:checked").val());
     };
 
@@ -62,23 +48,21 @@ var Perfil = function () {
         var dataArr = data.split("-")
         return dataArr[2] + '/' + dataArr[1] + '/' + dataArr[0];
     };
-
-    var confirmarAlteracoes = function () {
-        $("button#salvar-alteracoes").click(function () {
-            
-            //validarAlterações();
-            salvarAlteracoes();
-
-            //populando campos de perfl
-            preencherInfoPerfil();
-            //exibindo infos do perfil
-            $("form.perfil-form").addClass("hidden");
-            //escondendo campos de edicao
-            $("div#apresentacaoPerfil").removeClass("hidden");
-        });
-    };
     
-     /* * * * * * * * * * * *
+    var confirmarAlteracoes = function () {
+        //validarAlterações();
+        salvarAlteracoes();
+        //populando campos de perfl
+        preencherInfoPerfil();
+        //exibindo infos do perfil
+        $("form.perfil-form").addClass("hidden");
+        //escondendo campos de edicao
+        $("div#apresentacaoPerfil").removeClass("hidden");
+    };
+
+
+
+    /* * * * * * * * * * * *
      * Validation Defaults
      * * * * * * * * * * * */
     var initValidationDefaults = function () {
@@ -176,7 +160,8 @@ var Perfil = function () {
                     NProgress.done(); // Demo Purpose Only!
                 },
                 submitHandler: function (form) {
-                    salvarAlteracoes();
+                    confirmarAlteracoes();
+                    $('.perfil-form .alert-danger').hide();
                 }
             });
         }
@@ -185,13 +170,13 @@ var Perfil = function () {
     return {
         // main function to initiate all plugins
         init: function () {
+                
             initValidationDefaults();
             initPerfilValidation();
             
             preencherInfoPerfil();
             editarPerfil();
-            confirmarAlteracoes();
-            cancelarAlteracoes();
+            
         }
     };
 

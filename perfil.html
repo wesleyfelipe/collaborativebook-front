@@ -26,34 +26,28 @@
         <!--=== JavaScript ===-->
 
         <script type="text/javascript" src="assets/js/libs/jquery-1.10.2.min.js"></script>
-        <script type="text/javascript" src="plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="assets/js/libs/lodash.compat.min.js"></script>
 
+        <!-- Beautiful Checkboxes -->
+        <script type="text/javascript" src="plugins/uniform/jquery.uniform.min.js"></script>
 
-        <!-- General -->
-        <script type="text/javascript" src="assets/js/libs/breakpoints.js"></script>
+        <!-- Form Validation -->
+        <script type="text/javascript" src="plugins/validation/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="assets/js/mensagens-erro-validacao.js"></script>
 
-        <!-- Polyfill for min/max-width CSS3 Media Queries (only for IE8) -->
-
-        <script type="text/javascript" src="plugins/slimscroll/jquery.slimscroll.min.js"></script>
-        <script type="text/javascript" src="plugins/slimscroll/jquery.slimscroll.horizontal.min.js"></script>
+        <!-- Slim Progress Bars -->
+        <script type="text/javascript" src="plugins/nprogress/nprogress.js"></script>
 
         <!-- App -->
-        <script type="text/javascript" src="assets/js/app.js"></script>
-        <script type="text/javascript" src="assets/js/plugins.js"></script>
-        <script type="text/javascript" src="assets/js/plugins.form-components.js"></script>
         <script type="text/javascript" src="assets/js/perfil.js"></script>
-
         <script>
             $(document).ready(function () {
                 "use strict";
 
-                App.init(); // Init layout and core plugins
-                Plugins.init(); // Init all plugins
-                FormComponents.init(); // Init all form-specific plugins
-                Perfil.init();
+                Perfil.init(); // Init cadastro-usuario JavaScript
             });
         </script>
     </head>
@@ -116,110 +110,104 @@
 
         <div id="content">
 
-            <div class="container">
+            <!--=== Info Perfil ===-->
+            <div class="perfil-info" id="apresentacaoPerfil">
 
-                <!--=== Info Perfil ===-->
-                <div class="perfil-info" id="apresentacaoPerfil">
+                <br>
+                <h2>Informações de perfil</h2>
 
-                    <br>
-                    <h2>Informações de perfil</h2>
+                <br>
+                <label for="#username">Username</label>
+                <span id="username">Username</span>
 
-                    <br>
-                    <label for="#username">Username</label>
-                    <span id="username">Username</span>
+                <br>
+                <label for="#nome">Nome</label>
+                <span id="nome">Nome</span>
 
-                    <br>
-                    <label for="#nome">Nome</label>
-                    <span id="nome">Nome</span>
+                <br>
+                <label for="#email">E-mail</label>
+                <span id="email">E-mail</span>
 
-                    <br>
-                    <label for="#email">E-mail</label>
-                    <span id="email">E-mail</span>
+                <br>
+                <label for="#nascimento">Data de nascimento</label>
+                <span id="nascimento">Data</span>
 
-                    <br>
-                    <label for="#nascimento">Data de nascimento</label>
-                    <span id="nascimento">Data</span>
+                <br>
+                <label for="#genero">Gênero</label>
+                <span id="genero">Gênero</span>
 
-                    <br>
-                    <label for="#genero">Gênero</label>
-                    <span id="genero">Gênero</span>
+                <br>
+                <br>
 
-                    <br>
-                    <br>
-
-                    <button id="editar-perfil" class="btn btn-primary pull-left">
-                        Editar
-                    </button>
-
-                </div>
-                <!-- /Info Perfil -->
-
-                <!--=== Edicao Perfil ===-->
-                <form class="perfil-form perfil-info hidden" method="post">
-
-                    <br>
-                    <h2>Informações de perfil</h2>
-
-                    <!-- Error Message -->
-                    <div class="alert fade in alert-danger" style="display: none;">
-                        <i class="icon-remove close" data-dismiss="alert"></i>
-                        Corrija os erros de cadastro.
-                    </div>
-
-                    <!-- Input Fields -->
-                    <div class="form-group">
-                        <label for="#nome">Nome</label>
-                        <input type="text" id="nome" name="nome-completo" class="form-control form-edit" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe seu nome completo."/>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="#email">E-mail</label>
-                        <input type="email" id="email" name="email" class="form-control form-edit" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe um endereço de e-mail."/>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="#nascimento">Data de nascimento</label>
-                        <input type="text" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="data_nascimento" id="nascimento" class="form-control form-edit" placeholder="Data de nascimento" data-rule-required="true" data-msg-required="Por favor, informe a sua data de nascimento." />
-                    </div>
-
-                    <div class="form-group">
-                        <div >
-                            <label for="#genero">Gênero</label>
-                            <div class="form-edit" id="genero">
-                                <input type="radio" name="genero" data-rule-required="true" id="masculino" value="masculino"/> Masculino
-                                <br>
-                                <input type="radio" name="genero" data-rule-required="true" id="feminino" value="feminino"/> Feminino
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div >
-                            <label for="#imagem-perfil"  class="form-edit">Alterar imagem de perfil</label>
-                            <input type="file" accept="image/*" id="imagem-perfil" name="imagem-perfil" class="form-edit" autofocus="autofocus" data-rule-required="true">
-                        </div>
-                    </div>
-
-                    <!-- /Input Fields -->
-
-                    <br>
-
-                    <!-- Form Actions -->
-                    <div class="buttons">
-                        <button id="salvar-alteracoes" type="submit" class="submit btn btn-primary pull-left">
-                            Confirmar
-                        </button>
-
-                        <button id="cancelar-alteracoes" class="btn pull-left">
-                            Cancelar
-                        </button>
-                    </div>
-                </form>
+                <button id="editar-perfil" class="btn btn-primary pull-left">
+                    Editar
+                </button>
 
             </div>
-            <!-- /.container -->
+            <!-- /Info Perfil -->
 
-        </div>        
+            <!--=== Edicao Perfil ===-->
+            <form class="perfil-form perfil-info hidden" method="post">
+
+                <br>
+                <h2>Informações de perfil</h2>
+
+                <br>
+                <!-- Error Message -->
+                <div class="alert fade in alert-danger" style="display: none;">
+                    <i class="icon-remove close" data-dismiss="alert"></i>
+                    Corrija os erros de cadastro.
+                </div>
+
+                <!-- Input Fields -->
+                <div class="form-group">
+                    <label for="#nome">Nome</label>
+                    <input type="text" id="nome" name="nome-completo" class="form-control form-edit" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe seu nome completo."/>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="#email">E-mail</label>
+                    <input type="email" id="email" name="email" class="form-control form-edit" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe um endereço de e-mail."/>
+                </div>
+
+                <div class="form-group">
+                    <label for="#nascimento">Data de nascimento</label>
+                    <input type="text" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" name="data_nascimento" id="nascimento" class="form-control form-edit" placeholder="Data de nascimento" data-rule-required="true" data-msg-required="Por favor, informe a sua data de nascimento." />
+                </div>
+
+                <div class="form-group">
+                    <div >
+                        <label for="#genero">Gênero</label>
+                        <div class="form-edit" id="genero">
+                            <input type="radio" name="genero" data-rule-required="true" id="masculino" value="masculino"/> Masculino
+                            <br>
+                            <input type="radio" name="genero" data-rule-required="true" id="feminino" value="feminino"/> Feminino
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div >
+                        <label for="#imagem-perfil"  class="form-edit">Alterar imagem de perfil</label>
+                        <input type="file" accept="image/*" id="imagem-perfil" name="imagem-perfil" class="form-edit" autofocus="autofocus" data-rule-required="false">
+                    </div>
+                </div>
+
+                <!-- /Input Fields -->
+
+                <br>
+
+                <!-- Form Actions -->
+                <div class="buttons">
+                    <button id="salvar-alteracoes" type="submit" class="btn btn-primary pull-left">
+                        Confirmar
+                    </button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.container -->
+
     </body>
 </html>
