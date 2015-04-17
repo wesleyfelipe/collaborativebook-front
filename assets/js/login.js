@@ -1,5 +1,5 @@
 /*
- * Core script to handle all login specific things
+ * Author: Wesley Felipe da Slva
  */
 
 var Login = function () {
@@ -69,11 +69,11 @@ var Login = function () {
     }
 
     /* * * * * * * * * * * *
-     * Validation for Login
+     * Vaidação de Login
      * * * * * * * * * * * */
     var initLoginValidation = function () {
         
-        //SOLUCAO PROVISORIA DE AUTENTICACAO. SERVICO DE AUTENTICACAO FICARA A CARGO DO SERVER.
+        //TODO: Solução provisória utilizando localstorage.
         jQuery.validator.addMethod("usernameValido",function(){
             return localStorage.getItem("username") === $("input:text[name=username]").val()
         });
@@ -85,7 +85,6 @@ var Login = function () {
         
         if ($.validator) {
             $('.login-form').validate({
-                //VALIDACAO DE USUARIO E SENHA QUE ESTAO EM LOCALSTORAGE (SERA ALTERADO POSTERIORMENTE)
                 rules: {
                     username: {
                         usernameValido: true
@@ -94,10 +93,10 @@ var Login = function () {
                         senhaValida: true
                     }
                 },
-                invalidHandler: function (event, validator) { // display error alert on form submit
-                    NProgress.start(); // Demo Purpose Only!
+                invalidHandler: function (event, validator) {
+                    NProgress.start();
                     $('.login-form .alert-danger').show();
-                    NProgress.done(); // Demo Purpose Only!
+                    NProgress.done();
                 },
                 submitHandler: function (form) {
                     window.location.href = "index.html";
@@ -107,11 +106,10 @@ var Login = function () {
     }
 
     return {
-        // main function to initiate all plugins
         init: function () {
-            // Validations
-            initValidationDefaults(); // Extending jQuery Validation defaults
-            initLoginValidation(); // Validation for Login (Sign In)
+            // Validações
+            initValidationDefaults();
+            initLoginValidation(); 
         },
     };
 

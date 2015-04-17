@@ -1,5 +1,5 @@
 /*
- * Core script to handle all cadastro-usuario specific things
+ * Author: Wesley Felipe da Silva
  */
 
 var Cadastro = function () {
@@ -104,14 +104,14 @@ var Cadastro = function () {
                         date: true
                     }
                 },
-                invalidHandler: function (event, validator) { // display error alert on form submit
-                    NProgress.start(); // Demo Purpose Only!
+                invalidHandler: function (event, validator) {
+                    NProgress.start(); 
                     $('.cadastro-usuario-form .alert-danger').show();
-                    NProgress.done(); // Demo Purpose Only!
+                    NProgress.done();
                 },
                 submitHandler: function (form) {
 
-                    //ARMAZENANDO NOVO USUARIO EM LOCALSTORAGE (POSTERIORMENTE SERÁ ALTERADO)
+                    //TODO: armazenamento de informações em localstorage como solução temporária
                     localStorage.setItem("nomeCompleto", $("input:text[name=nome-completo]").val());
                     localStorage.setItem("username", $("input:text[name=username]").val());
                     localStorage.setItem("email", $("input[name=email]").val());
@@ -126,10 +126,9 @@ var Cadastro = function () {
     }
 
     return {
-        // main function to initiate all plugins
         init: function () {
-            // Validations
-            initValidationDefaults(); // Extending jQuery Validation defaults
+            // Validações
+            initValidationDefaults();
             initCadastroValidation();
         },
     };

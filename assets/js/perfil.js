@@ -1,11 +1,12 @@
 /*
- * Core script to handle all login specific things
+ * Author: Wesley Felipe da Silva
  */
 
 var Perfil = function () {
 
     "use strict";
 
+    //TODO: Solução temporária utilizando localStorage
     var preencherInfoPerfil = function () {
         $("span#username").text(localStorage.getItem("username"));
         $("span#nome").text(localStorage.getItem("nomeCompleto"));
@@ -17,6 +18,7 @@ var Perfil = function () {
         $("img#img-perfil").attr("src", imgPerfil);
     };
 
+    //TODO: Solução temporária utilizando localStorage
     var editarPerfil = function () {
         $("button#editar-perfil").click(function () {
             //ocultando campos de apresentacao
@@ -60,8 +62,8 @@ var Perfil = function () {
         });
     };
 
+    //TODO: Solução temporária utilizando localStorage
     var salvarAlteracoes = function () {
-        //ARMAZENANDO EM LOCALSTORAGE (POSTERIORMENTE SERÁ ALTERADO)
         localStorage.setItem("nomeCompleto", $("input:text[name=nome-completo]").val());
         localStorage.setItem("email", $("input[name=email]").val());
         localStorage.setItem("dataNascimento", $("input#nascimento").val());
@@ -84,6 +86,7 @@ var Perfil = function () {
         $("div#apresentacao-perfil").removeClass("hidden");
     };
 
+    //TODO: Solução temporária utilizando localStorage
     var confirmarAlteracaoSenha = function () {
         //SOLUCAO TEMPORARIA
         localStorage.setItem("password", $("input:password[name=new_password]").val());
@@ -202,8 +205,7 @@ var Perfil = function () {
      * Validacao de alteracao de senha
      * * * * * * * * * * * */
     var initAlteracaoSenhaValidation = function () {
-        //SOLUCAO PROVISORIA DE AUTENTICACAO. SERVICO DE AUTENTICACAO FICARA A CARGO DO SERVER.
-
+        //TODO: Solução temporária utilizando localStorage
         jQuery.validator.addMethod("senhaValida", function () {
             return localStorage.getItem("password") === $("input:password[name=password]").val()
         }, "Senha inválida.");
@@ -235,7 +237,6 @@ var Perfil = function () {
     };
 
     return {
-        // main function to initiate all plugins
         init: function () {
 
             initValidationDefaults();
