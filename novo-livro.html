@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<title>Empty File | Colaborative Template</title>
+	<title>Novo Livro | Colaborative Book</title>
 
 	<!--=== CSS ===-->
 
@@ -37,20 +37,26 @@
 	<script type="text/javascript" src="plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script type="text/javascript" src="plugins/slimscroll/jquery.slimscroll.horizontal.min.js"></script>
 
+        <!-- Form Validation -->
+	<script type="text/javascript" src="plugins/validation/jquery.validate.min.js"></script>
+        
+        <!-- Beautiful Checkboxes -->
+	<script type="text/javascript" src="plugins/uniform/jquery.uniform.min.js"></script>
+        
 	<!-- App -->
 	<script type="text/javascript" src="assets/js/app.js"></script>
-        <script type="text/javascript" src="assets/js/index.js"></script>
+        <script type="text/javascript" src="assets/js/novo-livro.js"></script>
 	<script type="text/javascript" src="assets/js/plugins.js"></script>
-	<script type="text/javascript" src="assets/js/plugins.form-components.js"></script>
+<!--	<script type="text/javascript" src="assets/js/plugins.form-components.js"></script>-->
         
-           <link href="assets/css/plugins/select2.css" rel="stylesheet" />
+        <link href="assets/css/plugins/select2.css" rel="stylesheet" />
         <script src="plugins/select2/select2.min.js"></script>
 
 	<script>
 	$(document).ready(function(){
 		"use strict";
 
-                Index.init();
+                NovoLivro.init();
                 
 	});
 	</script>
@@ -122,19 +128,26 @@
 			<div class="container">
 				
                             <div class="row" style="margin-top: 100px;">
-                                <form class="form-horizontal row-border" action="#">
+                                <form class="form-horizontal row-border novo-livro-form" action="livro.html" method="post">
+                                    
+                                    <!-- Error Message -->
+				<div class="alert fade in alert-danger" style="display: none;">
+					<i class="icon-remove close" data-dismiss="alert"></i>
+					Corrija os erros abaixo.
+				</div>
+                                    
                                 <div class="col-md-8 centered">
                                        
                                     <div class="widget">
                                         <div class="widget-header">
-                                            <h4><i class="icon-reorder"></i> Novo livro</h4>
+                                            <h4><i class="icon-reorder"></i>Novo livro</h4>
                                         </div>
                                         
                                         <div class="widget-content">
                                                 
                                                 <div class="form-group">
                                                     <label class="col-md-2 control-label">Título:</label>
-                                                    <div class="col-md-10"><input type="text" name="regular" class="form-control"></div>
+                                                    <div class="col-md-10"><input type="text" name="titulo" class="form-control" autofocus="autofocus" required data-rule-required data-msg-required="Por favor, informe um título."></div>
                                                 </div>
                                                 
                                                 <div class="form-group">
@@ -187,8 +200,7 @@
                                                 </div>
                                             
                                             <div class="form-group">
-                                                <button class="btn btn-lg btn-primary" style="float: right;">Salvar</button>
-                                            
+                                                <button type="submit" class="btn btn-lg btn-primary" style="float: right;">Salvar</button>
                                             </div>
                                             
                                         </div>
