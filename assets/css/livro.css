@@ -1,0 +1,10 @@
+#capa-livro{
+    margin-right: 20px;
+    width: 250px;
+    height: 320px;
+    float: left;
+}
+.btn{
+    margin-left: 0px;
+    margin-right: 20px;
+}
