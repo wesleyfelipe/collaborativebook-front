@@ -3320,3 +3320,13 @@ ul.stats li.light strong {
 .theme-dark #sidebar .notifications li a:hover {
   color: #eaebee;
 }
+
+.centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.form-horizontal .form-group {
+   margin-right: 0px;
+   margin-left: 0px; 
+}

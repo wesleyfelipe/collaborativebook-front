@@ -42,6 +42,9 @@
         <script type="text/javascript" src="assets/js/index.js"></script>
 	<script type="text/javascript" src="assets/js/plugins.js"></script>
 	<script type="text/javascript" src="assets/js/plugins.form-components.js"></script>
+        
+           <link href="assets/css/plugins/select2.css" rel="stylesheet" />
+        <script src="plugins/select2/select2.min.js"></script>
 
 	<script>
 	$(document).ready(function(){
@@ -76,7 +79,7 @@
 			<!-- Top Left Menu -->
 			<ul class="nav navbar-nav navbar-left hidden-xs hidden-sm">
                             <li>
-                                <a href="meus-livros.html">
+                                <a href="#">
                                     Meus livros
                                 </a>
                             </li>
@@ -119,20 +122,82 @@
 			<div class="container">
 				
                             <div class="row" style="margin-top: 100px;">
-                                <div style="text-align: center;" class="col-md-6 centered">
-                                       <!--=== Page Header ===-->
-				
-                                            <h2 class="nomeusuario" style=" display: inline;">Olá, </h2><h2 style="display: inline;">!</h2>
-                                                <h2>Vamos escrever um livro hoje?</h2>
-				
-				
-				<!-- /Page Header -->
-
-                                    <a href="novo-livro.html" style="  margin-top: 50px;" class="btn btn-icon input-block-level">
-                                            <i class="icon-book"></i>
-                                            <h3>Comece agora!</h3>
-                                    </a>
+                                <form class="form-horizontal row-border" action="#">
+                                <div class="col-md-8 centered">
+                                       
+                                    
+                                    
+                                    
+                                    <div class="widget">
+							<div class="widget-header">
+								<h4><i class="icon-reorder"></i> Meus livros</h4>
+								
+							</div>
+							<div class="widget-content">
+								<table class="table table-striped table-bordered table-checkable table-highlight-head table-no-inner-border table-hover">
+									<thead>
+										<tr>
+											
+										<th class="align-center">Menu</th>	
+										<th class="align-center">Título</th>
+                                                                                <th class="align-center">Gênero</th>
+											
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+                                                                                    
+											<td class="align-center">
+												<ul class="table-controls">
+													<li><a href="javascript:void(0);" class="bs-tooltip" title="Search"><i class="icon-search"></i></a> </li>
+													<li><a href="javascript:void(0);" class="bs-tooltip" title="Edit"><i class="icon-pencil"></i></a> </li>
+													<li><a href="javascript:void(0);" class="bs-tooltip" title="Delete"><i class="icon-trash"></i></a> </li>
+												</ul>
+											</td>
+                                                                                        
+                                                                                        <td>Meu primeiro livro</td>
+                                                                                        <td>Policial</td>
+										</tr>
+										<tr>
+                                                                                    
+											<td class="align-center">
+												<ul class="table-controls">
+													<li><a href="javascript:void(0);" class="bs-tooltip" title="Search"><i class="icon-search"></i></a> </li>
+													<li><a href="javascript:void(0);" class="bs-tooltip" title="Edit"><i class="icon-pencil"></i></a> </li>
+													<li><a href="javascript:void(0);" class="bs-tooltip" title="Delete"><i class="icon-trash"></i></a> </li>
+												</ul>
+											</td>
+                                                                                        
+                                                                                        <td>Romance de colégio</td>
+                                                                                        <td>Juvenil</td>
+										</tr>
+										<tr>
+                                                                                    
+											<td class="align-center">
+												<ul class="table-controls">
+													<li><a href="javascript:void(0);" class="bs-tooltip" title="Search"><i class="icon-search"></i></a> </li>
+													<li><a href="javascript:void(0);" class="bs-tooltip" title="Edit"><i class="icon-pencil"></i></a> </li>
+													<li><a href="javascript:void(0);" class="bs-tooltip" title="Delete"><i class="icon-trash"></i></a> </li>
+												</ul>
+											</td>
+                                                                                        
+                                                                                        <td>CSS Inline é feio</td>
+                                                                                        <td>Crônicas </td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+                                    
+                                    
+                                    
                                 </div>
+                                </form>
+                                
+                                
+                                
 
                             </div>
 				
