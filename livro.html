@@ -38,16 +38,17 @@
         <script type="text/javascript" src="plugins/validation/jquery.validate.min.js"></script>
         <script type="text/javascript" src="assets/js/mensagens-erro-validacao.js"></script>
 
-        <!-- Slim Progress Bars -->
-        <script type="text/javascript" src="plugins/nprogress/nprogress.js"></script>
+        <link href="assets/css/plugins/select2.css" rel="stylesheet" />
+        <script src="plugins/select2/select2.min.js"></script>
 
         <!-- App -->
-        <script type="text/javascript" src="assets/js/livro.js"></script>
         <script>
             $(document).ready(function () {
                 "use strict";
 
-                Livro.init(); // Init cadastro-usuario JavaScript
+                $(".nomeusuario").append(localStorage.getItem("username"));
+                $('select').select2();
+                
             });
         </script>
     </head>
@@ -97,7 +98,7 @@
                     <li class="dropdown user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-male"></i>
-                            <span id="username">Username</span>
+                            <span class="nomeusuario"></span>
                             <i class="icon-caret-down small"></i>
                         </a>
                         <ul class="dropdown-menu">
@@ -265,19 +266,12 @@
                             </div>
 
                             <br>
-                            
-                            <button id="criar-capitulo" class="btn btn-primary pull-left">
-                                Criar capítulo
-                            </button>
-                            
-                            <button id="editar-livro" class="btn btn-primary pull-left">
-                                Editar Informações do Livro
-                            </button>
-                            
-                            <button id="excluir-livro" class="btn btn-primary pull-left">
-                                Excluir livro
-                            </button>
 
+                            <a href="novo-capitulo.html">
+                                <button id="criar-capitulo" class="btn btn-primary pull-left">
+                                    Criar capítulo
+                                </button>
+                            </a>
                         </div>
 
 

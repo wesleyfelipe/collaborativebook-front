@@ -45,7 +45,7 @@
         
 	<!-- App -->
 	<script type="text/javascript" src="assets/js/app.js"></script>
-        <script type="text/javascript" src="assets/js/novo-livro.js"></script>
+<!--        <script type="text/javascript" src="assets/js/livro.js"></script>-->
 	<script type="text/javascript" src="assets/js/plugins.js"></script>
 <!--	<script type="text/javascript" src="assets/js/plugins.form-components.js"></script>-->
         
@@ -55,8 +55,9 @@
 	<script>
 	$(document).ready(function(){
 		"use strict";
-
-                NovoLivro.init();
+                
+                $(".nomeusuario").append(localStorage.getItem("username"));
+                $('select').select2();
                 
 	});
 	</script>
@@ -129,12 +130,6 @@
 				
                             <div class="row" style="margin-top: 100px;">
                                 <form class="form-horizontal row-border novo-livro-form" action="livro.html" method="post">
-                                    
-                                    <!-- Error Message -->
-				<div class="alert fade in alert-danger" style="display: none;">
-					<i class="icon-remove close" data-dismiss="alert"></i>
-					Corrija os erros abaixo.
-				</div>
                                     
                                 <div class="col-md-8 centered">
                                        
