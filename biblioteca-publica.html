@@ -39,7 +39,7 @@
 
         <!-- App -->
         <script type="text/javascript" src="assets/js/app.js"></script>
-        <script type="text/javascript" src="assets/js/index.js"></script>
+        <script type="text/javascript" src="assets/js/biblioteca-publica.js"></script>
         <script type="text/javascript" src="assets/js/plugins.js"></script>
         <script type="text/javascript" src="assets/js/plugins.form-components.js"></script>
 
@@ -50,7 +50,7 @@
             $(document).ready(function () {
                 "use strict";
 
-                Index.init();
+                Biblioteca.init();
 
             });
         </script>
@@ -125,67 +125,25 @@
 
                         <div class="col-md-8 centered">
 
-
-
-
                             <div class="widget">
                                 <div class="widget-header">
                                     <h4><i class="icon-reorder"></i>Biblioteca</h4>
 
                                 </div>
                                 <div class="widget-content">
-                                    <table class="table table-striped table-bordered table-checkable table-highlight-head table-no-inner-border table-hover">
+                                    <table id="catalogo" class="table table-striped table-bordered table-checkable table-highlight-head table-no-inner-border table-hover">
                                         <thead>
                                             <tr>
 
                                                 <th class="align-center">Menu</th>	
                                                 <th class="align-center">Título</th>
                                                 <th class="align-center">Gênero</th>
-
+                                                <th class="align-center">Proprietário</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="livro.html" class="bs-tooltip" title="Search"><i class="icon-search"></i></a> </li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" title="Edit"><i class="icon-pencil"></i></a> </li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" title="Delete"><i class="icon-trash"></i></a> </li>
-                                                    </ul>
-                                                </td>
-
-                                                <td>Meu primeiro livro</td>
-                                                <td>Policial</td>
-                                            </tr>
-                                            <tr>
-
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="livro.html" class="bs-tooltip" title="Search"><i class="icon-search"></i></a> </li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" title="Edit"><i class="icon-pencil"></i></a> </li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" title="Delete"><i class="icon-trash"></i></a> </li>
-                                                    </ul>
-                                                </td>
-
-                                                <td>Romance de colégio</td>
-                                                <td>Juvenil</td>
-                                            </tr>
-                                            <tr>
-
-                                                <td class="align-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="livro.html" class="bs-tooltip" title="Search"><i class="icon-search"></i></a> </li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" title="Edit"><i class="icon-pencil"></i></a> </li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" title="Delete"><i class="icon-trash"></i></a> </li>
-                                                    </ul>
-                                                </td>
-
-                                                <td>CSS Inline é feio</td>
-                                                <td>Crônicas </td>
-                                            </tr>
-
+                                            
                                         </tbody>
                                     </table>
                                 </div>
