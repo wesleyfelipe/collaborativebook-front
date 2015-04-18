@@ -9,23 +9,27 @@ var Biblioteca = function () {
     //variaveis
     
     //livro exemplo 1
-    var cap1Livro1 = {titulo: "Prólogo", texto: "1...2...3...", autor: "Fernando Pessoa"};
-    var cap2Livro1 = {titulo: "Fim", texto: "3...2...1...", autor: "Paulo Coelho"};
-    var capitulosLivro1 = [cap1Livro1, cap2Livro1];
-    var livro1 = {proprietario: "Batman", titulo: "Sem criatividade", genero: "Crônica", enredo: "Não há",
-        personagens: "Não há", ambientação: "Não há", capitulos: capitulosLivro1};
+   var livro1 = {proprietario: "Batman", titulo: "Java em 30 dias", genero: "Tecnologia", enredo: "Não há",
+        personagens: "Não há", ambientação: "Não há", capitulos: null};
     
     //livro exemplo 2
-    var cap1Livro2 = {titulo: "Leis Fundamentais da robótica", texto: "1ª Lei: Um robô não pode ferir um ser humano ou, por inação, permitir que um ser humano sofra algum mal.\n"+
-                "2ª Lei: Um robô deve obedecer as ordens que lhe sejam dadas por seres humanos exceto nos casos em que tais ordens entrem em conflito com a Primeira Lei.\n"+
-                "3ª Lei: Um robô deve proteger sua própria existência desde que tal proteção não entre em conflito com a Primeira ou Segunda Leis.", autor: "Einstein"};
-    var cap2Livro2 = {titulo: "Conclusão", texto: "Fim", autor: "Um robô"};
-    var capitulosLivro2 = [cap1Livro2, cap2Livro2];
-    var livro2 = {proprietario: "Isaac Asimov", titulo: "Eu, robô", genero: "Ficção científica", enredo: "Não há",
-        personagens: "Não há", ambientação: "Não há", capitulos: capitulosLivro2};
+    var livro2 = {proprietario: "Fernando Pessoa", titulo: "Poemas", genero: "Poesia", enredo: "Não há",
+        personagens: "Não há", ambientação: "Não há", capitulos: null};
+    
+    //livro exemplo 3
+    var livro3 = {proprietario: "Albert Einstein", titulo: "Relatividade", genero: "Ciência", enredo: "Não há",
+        personagens: "Não há", ambientação: "Não há", capitulos: null};
+    
+    //livro exemplo 4
+    var livro4 = {proprietario: "Edgar Allan Poe", titulo: "O corvo", genero: "Ficção", enredo: "Não há",
+        personagens: "Não há", ambientação: "Não há", capitulos: null};
+    
+    //livro exemplo 4
+    var livro4 = {proprietario: "Darth Vader", titulo: "I am your father", genero: "Drama", enredo: "Não há",
+        personagens: "Não há", ambientação: "Não há", capitulos: null};
 
     //list de livros
-    var livros = [livro1,livro2];
+    var livros = [livro1,livro2,livro3, livro4];
     
     //funções
     var initCatalogo = function () {

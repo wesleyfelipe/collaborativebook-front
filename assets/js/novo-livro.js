@@ -8,7 +8,7 @@ var NovoLivro = function () {
     
     var generos = ["Humor","Ficção","Romance","Poesia","Mistério","Terror","Drama","Ficção científica",
                     "Infantil","Juvenil","Fantasia","Aventura","Policial","Espiritualidade/Religião",
-                    "História","Crônicas","Mitologia","Distopia"]
+                    "História","Crônicas","Mitologia","Distopia","Tecnologia","Ciência"]
     
     //funções
     var listarGeneros = function () { 

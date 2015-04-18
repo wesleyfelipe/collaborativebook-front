@@ -32,9 +32,10 @@ var MeusLivros = function () {
         for (var i = 0; i < livros.length; i++) {
             $('table#catalogo tr:last').after(
                 "<tr><td class='align-center'><ul class='table-controls'><li><a href='livro.html'\n\
-                class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> </li><li><a href='javascript:void(0);'\n\
-                class='bs-tooltip' title='Editar'><i class='icon-pencil'></i></a> </li><li><a href='javascript:void(0);' class='bs-tooltip'\n\
-                title='Deletar'><i class='icon-trash'></i></a> </li></ul></td><td>" + livros[i].titulo + "</td><td>" + livros[i].genero + "</td></tr>");
+                class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> \n\
+                </li><li><a href='javascript:void(0);' class='bs-tooltip'\n\
+                title='Deletar'><i class='icon-trash'></i></a> </li></ul></td><td>"
+                + livros[i].titulo + "</td><td>" + livros[i].genero + "</td></tr>");
         }
     };
     
