@@ -120,6 +120,10 @@ var Cadastro = function () {
                     localStorage.setItem("genero", $("input:radio[name=genero]:checked").val());
                     localStorage.setItem("imagemPerfil","assets/img/default_avatar.png")
                     window.location.href = "index.html";
+                    
+                    
+                    // Zera os livros
+                    localStorage.setItem("livros", "");
                 }
             });
         }

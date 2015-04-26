@@ -17,7 +17,7 @@
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
 
         <link rel="stylesheet" href="assets/css/fontawesome/font-awesome.min.css">
-
+        
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 
         <!--=== JavaScript ===-->
@@ -63,8 +63,11 @@
 
             });
         </script>
+        
     </head>
 
+
+    
     <body>
 
         <!-- Header -->
@@ -131,7 +134,7 @@
                 <div class="container">
 
                     <div class="row" style="margin-top: 100px;">
-                        <form class="form-horizontal row-border novo-livro-form" action="livro.html" method="post">
+                        <form class="form-horizontal row-border novo-livro-form" id="form-livro">
 
                             <div class="col-md-8 centered">
 
@@ -144,48 +147,69 @@
 
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Título:</label>
-                                            <div class="col-md-10"><input type="text" name="titulo" class="form-control" autofocus="autofocus" required data-rule-required data-msg-required="Por favor, informe um título."></div>
+                                            <div class="col-md-10"><input type="text" id="titulo" name="titulo" class="form-control" 
+                                                                          autofocus="autofocus" required 
+                                                                          data-msg-required="Por favor, informe um título."></div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Gênero</label>
                                             <div class="col-md-10">
-                                                <select id="genero" class="select2-select-00 col-md-12 full-width-fix ">
+                                                <select id="genero" required class="select2-select-00 col-md-12 full-width-fix " data-msg-required="Por favor, informe um gênero.">
                                                     <option></option>
-                                                    
+                                                    <option>Humor</option>
+                                                    <option>Ficção</option>
+                                                    <option>Romance</option>
+                                                    <option>Poesia</option>
+                                                    <option>Mistério</option>
+                                                    <option>Terror</option>
+                                                    <option>Drama</option>
+                                                    <option>Ficção científica</option>
+                                                    <option>Infantil</option>
+                                                    <option>Juvenil</option>
+                                                    <option>Fantasia</option>
+                                                    <option>Aventura</option>
+                                                    <option>Policial</option>
+                                                    <option>Espiritualidade/Religião</option>
+                                                    <option>História</option>
+                                                    <option>Crônicas</option>
+                                                    <option>Mitologia</option>
+                                                    <option>Distopia</option>
+    
                                                 </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Enredo inicial: </label>
-                                            <div class="col-md-10"><textarea rows="3" cols="5" name="textarea" class="form-control"></textarea></div>
+                                            <div class="col-md-10"><textarea required id="enredo" data-msg-required="Por favor, informe um enredo." rows="3" cols="5" name="textarea" class="form-control"></textarea></div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Personagens principais: </label>
-                                            <div class="col-md-10"><textarea rows="3" cols="5" name="textarea" class="form-control"></textarea></div>
+                                            <div class="col-md-10"><textarea required id="personagens" data-msg-required="Por favor, informe personagens."  rows="3" cols="5" name="textarea" class="form-control"></textarea></div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Ambientação: </label>
-                                            <div class="col-md-10"><textarea rows="3" cols="5" name="textarea" class="form-control"></textarea></div>
+                                            <div class="col-md-10"><textarea required id="ambientacao" data-msg-required="Por favor, informe a ambientação."  rows="3" cols="5" name="textarea" class="form-control"></textarea></div>
                                         </div>
 
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label class="col-md-2 control-label">Capa do livro:</label>
                                             <div class="col-md-10">
                                                 <div class="fileinput-holder input-group"><div class="fileinput-preview uneditable-input form-control" style="cursor: text; text-overflow: ellipsis; ">Nenhuma imagem selecionada...</div><div class="input-group-btn"><span class="fileinput-btn btn" style="overflow: hidden; position: relative; cursor: pointer; ">Pesquisar...<input type="file" data-style="fileinput" style="position: absolute; top: 0px; right: 0px; margin: 0px; cursor: pointer; font-size: 99px; opacity: 0;"></span></div></div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group">
+                                                
                                             <button type="submit" class="btn btn-lg btn-primary" style="float: right;">Salvar</button>
-                                            <a href="meus-livros.html">
-                                                <button type="button" class="btn btn-lg" style="float: right; margin-right: 10px">
-                                                    Cancelar
-                                                </button>
-                                            </a>
+
+                                            <button type="button" class="btn btn-lg" style="float: right; margin-right: 10px">
+                                                Cancelar
+                                            </button>
+
                                         </div>
 
                                     </div>
