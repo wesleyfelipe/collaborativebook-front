@@ -85,7 +85,7 @@ var Cadastro = function () {
                 }
             });
         }
-    }
+    };
 
     /* * * * * * * * * * * *
      * Validacao de cadastro
@@ -157,8 +157,6 @@ var Cadastro = function () {
             // Validações
             initValidationDefaults();
             initCadastroValidation();
-
-            //submitForm();
-        },
+        }
     };
 }();
