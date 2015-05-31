@@ -6,16 +6,32 @@ var Perfil = function () {
 
     "use strict";
 
-    //TODO: Solução temporária utilizando localStorage
     var preencherInfoPerfil = function () {
-        $("span#username").text(localStorage.getItem("username"));
-        $("span#nome").text(localStorage.getItem("nomeCompleto"));
-        $("span#email").text(localStorage.getItem("email"));
-        var data = localStorage.getItem("dataNascimento");
-        $("span#nascimento").text(formatarData(data));
-        $("span#genero").text(localStorage.getItem("genero"));
-        var imgPerfil = localStorage.getItem("imagemPerfil");
-        $("img#img-perfil").attr("src", imgPerfil);
+
+        $.ajax({
+            //TODO: Arrumar url para ser dinamico
+            url: "http://localhost:8123/api/usuarios/556a794318bc6b9811000002",
+            type: 'get',
+            response: {
+                format: 'json'
+            },
+            success: function (response) {
+                $("span#username").text(response.nomeUsuario);
+                $("span#nome").text(response.nomeCompleto);
+                $("span#email").text(response.email);
+                //TODO: arrumar parse do formato da data de nascimento
+                var nascimento = response.nascimento;
+                $("span#nascimento").text(nascimento);
+                $("span#genero").text(response.genero);
+                //TODO >>>>>>>>>>>>>>>
+                var imgPerfil = localStorage.getItem("imagemPerfil");
+                $("img#img-perfil").attr("src", imgPerfil);
+            },
+            error: function () {
+                //TODO: >>>>>>>>>>>>>>>>>>>>>>>>
+                alert("Deu ruim! :[");
+            }
+        });
     };
 
     //TODO: Solução temporária utilizando localStorage
@@ -45,17 +61,17 @@ var Perfil = function () {
             $("form.alterar-senha-form").removeClass("hidden");
         });
     };
-    
-    var cancelarAlteracaoSenha = function(){
-        $("button#cancelar-alteracao-senha").click(function(){
+
+    var cancelarAlteracaoSenha = function () {
+        $("button#cancelar-alteracao-senha").click(function () {
             //ocultando campos de apresentacao
             $("form.alterar-senha-form").addClass("hidden");
             $("div#apresentacao-perfil").removeClass("hidden");
         });
     };
-    
-    var cancelarAlteracaoPerfil = function(){
-        $("button#cancelar-alteracao-perfil").click(function(){
+
+    var cancelarAlteracaoPerfil = function () {
+        $("button#cancelar-alteracao-perfil").click(function () {
             //ocultando campos de apresentacao
             $("form.perfil-form").addClass("hidden");
             $("div#apresentacao-perfil").removeClass("hidden");
