@@ -94,13 +94,13 @@ var Cadastro = function () {
         if ($.validator) {
             $('.cadastro-usuario-form').validate({
                 rules: {
-                    password: {
+                    senha: {
                         minlength: 8
                     },
-                    password_confirmation: {
+                    confirmacaoSenha: {
                         equalTo: $("#password")
                     },
-                    data_nascimento: {
+                    nascimento: {
                         date: true
                     }
                 },
