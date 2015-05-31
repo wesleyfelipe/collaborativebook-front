@@ -116,14 +116,16 @@ var Cadastro = function () {
                         dataType: 'json',
                         data: $("form").serialize(),
                         statusCode: {
-                            201: function () {
+                            201: function (response) {
+                                //TODO: usar gerenciamento de sessão para mater o usuario
+                                localStorage.setItem("usuarioID",response._id);
                                 window.location.href = "index.html";
                             },
                             400: function(){
                                 alert("Existem erros no cadastro.");
                             },
                             409: function () {
-                                alert("Nome de usuário ou email já cadastrados!");
+                                alert("Nome de usuário ou email já cadastrados.");
                             },
                             500: function() {
                                 alert("Ops! Algo errado aconteceu. :(");

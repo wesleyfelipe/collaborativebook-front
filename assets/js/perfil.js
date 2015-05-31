@@ -7,10 +7,10 @@ var Perfil = function () {
     "use strict";
 
     var preencherInfoPerfil = function () {
-
+        var usuarioID = localStorage.getItem("usuarioID");
         $.ajax({
             //TODO: Arrumar url para ser dinamico
-            url: "http://localhost:8123/api/usuarios/556a794318bc6b9811000002",
+            url: "http://localhost:8123/api/usuarios/" + usuarioID,
             type: 'get',
             response: {
                 format: 'json'
@@ -19,13 +19,10 @@ var Perfil = function () {
                 $("span#username").text(response.nomeUsuario);
                 $("span#nome").text(response.nomeCompleto);
                 $("span#email").text(response.email);
-                //TODO: arrumar parse do formato da data de nascimento
-                var nascimento = response.nascimento;
-                $("span#nascimento").text(nascimento);
+                var nascimento = new Date(response.nascimento);
+                $("span#nascimento").text(formatarData(nascimento));
                 $("span#genero").text(response.genero);
-                //TODO >>>>>>>>>>>>>>>
-                var imgPerfil = localStorage.getItem("imagemPerfil");
-                $("img#img-perfil").attr("src", imgPerfil);
+                $("img#img-perfil").attr("src", response.imagemPerfil);
             },
             error: function () {
                 //TODO: >>>>>>>>>>>>>>>>>>>>>>>>
@@ -87,8 +84,8 @@ var Perfil = function () {
     };
 
     var formatarData = function (data) {
-        var dataArr = data.split("-")
-        return dataArr[2] + '/' + dataArr[1] + '/' + dataArr[0];
+        var dataFormatada =  (data.getDate()+1) + '/' + (data.getMonth() + 1) + '/' +  data.getFullYear();
+        return dataFormatada;
     };
 
     var confirmarAlteracoes = function () {
