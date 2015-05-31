@@ -10,7 +10,7 @@ var Perfil = function () {
         var usuarioID = localStorage.getItem("usuarioID");
         $.ajax({
             //TODO: Arrumar url para ser dinamico
-            url: "http://localhost:8123/api/usuarios/" + usuarioID,
+            url: "http://localhost:8123/colaborativebook/api/usuarios/" + usuarioID,
             type: 'get',
             response: {
                 format: 'json'

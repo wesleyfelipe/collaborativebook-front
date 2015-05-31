@@ -111,7 +111,7 @@ var Cadastro = function () {
                 },
                 submitHandler: function (form) {
                     $.ajax({
-                        url: "http://localhost:8123/api/usuarios",
+                        url: "http://localhost:8123/colaborativebook/api/usuarios",
                         type: 'post',
                         dataType: 'json',
                         data: $("form").serialize(),
