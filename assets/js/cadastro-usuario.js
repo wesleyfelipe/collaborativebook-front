@@ -105,35 +105,60 @@ var Cadastro = function () {
                     }
                 },
                 invalidHandler: function (event, validator) {
-                    NProgress.start(); 
+                    NProgress.start();
                     $('.cadastro-usuario-form .alert-danger').show();
                     NProgress.done();
                 },
                 submitHandler: function (form) {
-
-                    //TODO: armazenamento de informações em localstorage como solução temporária
-                    localStorage.setItem("nomeCompleto", $("input:text[name=nome-completo]").val());
-                    localStorage.setItem("username", $("input:text[name=username]").val());
-                    localStorage.setItem("email", $("input[name=email]").val());
-                    localStorage.setItem("password", $("input:password[name=password]").val());
-                    localStorage.setItem("dataNascimento", $("input:text[name=data_nascimento]").val());
-                    localStorage.setItem("genero", $("input:radio[name=genero]:checked").val());
-                    localStorage.setItem("imagemPerfil","assets/img/default_avatar.png")
-                    window.location.href = "index.html";
-                    
-                    
-                    // Zera os livros
-                    localStorage.setItem("livros", "");
+                    $.ajax({
+                        url: "http://localhost:8123/api/usuarios",
+                        type: 'post',
+                        dataType: 'json',
+                        data: $("form").serialize(),
+                        statusCode: {
+                            201: function () {
+                                window.location.href = "index.html";
+                            },
+                            400: function(){
+                                alert("Existem erros no cadastro.");
+                            },
+                            409: function () {
+                                alert("Nome de usuário ou email já cadastrados!");
+                            },
+                            500: function() {
+                                alert("Ops! Algo errado aconteceu. :(");
+                            }
+                        }
+                    });
                 }
             });
         }
-    }
+    };
+
+    /******************
+     * Submit do formulário
+     ******************/
+    var submitForm = function () {
+        $("form").submit(function (e) {
+            $.ajax({
+                url: "http://localhost:8123/api/usuarios",
+                type: 'post',
+                dataType: 'json',
+                data: $("form").serialize(),
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    };
 
     return {
         init: function () {
             // Validações
             initValidationDefaults();
             initCadastroValidation();
+
+            //submitForm();
         },
     };
 }();
