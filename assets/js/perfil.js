@@ -7,47 +7,51 @@ var Perfil = function () {
     "use strict";
 
     var preencherInfoPerfil = function () {
-        var usuarioID = localStorage.getItem("usuarioID");
+        var usuarioID = sessionStorage.getItem("usuarioID");
         $.ajax({
-            //TODO: Arrumar url para ser dinamico
-            url: "http://localhost:8123/colaborativebook/api/usuarios/" + usuarioID,
+            url: "http://localhost:3000/api/usuario/" + usuarioID,
             type: 'get',
             response: {
                 format: 'json'
             },
-            success: function (response) {
-                $("span#username").text(response.nomeUsuario);
-                $("span#nome").text(response.nomeCompleto);
-                $("span#email").text(response.email);
-                var nascimento = new Date(response.nascimento);
-                $("span#nascimento").text(formatarData(nascimento));
-                $("span#genero").text(response.genero);
-                $("img#img-perfil").attr("src", response.imagemPerfil);
-            },
-            error: function () {
-                //TODO: >>>>>>>>>>>>>>>>>>>>>>>>
-                alert("Deu ruim! :[");
+            statusCode:{
+                200: function (response) {
+                    $("span#username").text(response.nomeUsuario);
+                    $("span#nome").text(response.nomeCompleto);
+                    $("span#email").text(response.email);
+                    var nascimento = new Date(response.nascimento);
+                    $("span#nascimento").text(formatarData(nascimento));
+                    $("span#genero").text(response.genero);
+                    $("img#img-perfil").attr("src", response.imagemPerfil);
+                },
+                401: function(response){
+                    window.location.href = "login.html";
+                },
+                404: function(){
+                    alert("Ocorreu um erro na sua requisição. Estamos trabalhando nesta correção.");
+                },
+                500: function() {
+                    alert("Ops! Algo errado aconteceu. Tente novamente daqui alguns instantes.");
+                }
             }
         });
     };
 
-    //TODO: Solução temporária utilizando localStorage
     var editarPerfil = function () {
         $("button#editar-perfil").click(function () {
             //ocultando campos de apresentacao
             $("div#apresentacao-perfil").addClass("hidden");
             //populando campos de input
-            $("input#nome").attr("value", localStorage.getItem("nomeCompleto"));
-            $("input#email").attr("value", localStorage.getItem("email"));
-            $("input#nascimento").attr("value", localStorage.getItem("dataNascimento"));
-            if (localStorage.getItem("genero") === "masculino") {
+            $("input#nome").attr("value", $("span#nome").text());
+            $("input#email").attr("value", $("span#email").text());
+            $("input#nascimento").attr("value", $("span#nascimento").text());
+            if ($("span#genero").text() === "masculino") {
                 $("input#masculino").prop("checked", true);
             } else {
                 $("input#feminino").prop("checked", true);
             }
             //exibindo campos de input
             $("form.perfil-form").removeClass("hidden");
-
         });
     };
 
