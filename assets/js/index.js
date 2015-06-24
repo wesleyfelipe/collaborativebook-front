@@ -1,7 +1,5 @@
 var Index = {};
     
 Index.init = function(){
-    $(".nomeusuario").append(localStorage.getItem("username"));   
-    
-     //$('select').select2();
+    $(".nomeusuario").append(sessionStorage.getItem("nomeUsuario"));   
 };
