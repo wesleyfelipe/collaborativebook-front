@@ -11,6 +11,7 @@ var Perfil = function () {
         $.ajax({
             url: "http://localhost:3000/api/usuario/" + usuarioID,
             type: 'get',
+            beforeSend: function(xhr){xhr.setRequestHeader('X-Access-Token', sessionStorage.getItem("token"));},
             response: {
                 format: 'json'
             },

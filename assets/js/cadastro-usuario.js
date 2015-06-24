@@ -117,6 +117,7 @@ var Cadastro = function () {
                         data: $("form").serialize(),
                         statusCode: {
                             200: function (response) {
+                                alert(JSON.stringify(response));
                                 sessionStorage.setItem("usuarioID",response.data._id);
                                 sessionStorage.setItem("nomeUsuario",response.data.nomeUsuario);
                                 sessionStorage.setItem("nomeCompleto",response.data.nomeCompleto);

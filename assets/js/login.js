@@ -71,35 +71,42 @@ var Login = function () {
     /* * * * * * * * * * * *
      * Vaidação de Login
      * * * * * * * * * * * */
-    var initLoginValidation = function () {
-        
-        //TODO: Solução provisória utilizando localstorage.
-        jQuery.validator.addMethod("usernameValido",function(){
-            return localStorage.getItem("username") === $("input:text[name=username]").val()
-        });
-        
-        jQuery.validator.addMethod("senhaValida",function(){
-            return localStorage.getItem("password") === $("input:password[name=password]").val()
-        });
-        
-        
+    var initLoginValidation = function () {      
         if ($.validator) {
             $('.login-form').validate({
-                rules: {
-                    username: {
-                        usernameValido: true
-                    },
-                    password: {
-                        senhaValida: true
-                    }
-                },
                 invalidHandler: function (event, validator) {
                     NProgress.start();
                     $('.login-form .alert-danger').show();
                     NProgress.done();
                 },
                 submitHandler: function (form) {
-                    window.location.href = "index.html";
+                    $.ajax({
+                        url: "http://localhost:3000/login",
+                        type: 'post',
+                        dataType: 'json',
+                        data: $("form").serialize(),
+                        statusCode: {
+                            200: function (response) {
+                                alert(JSON.stringify(response));
+                                sessionStorage.setItem("usuarioID",response.user._id);
+                                sessionStorage.setItem("nomeUsuario",response.user.nomeUsuario);
+                                sessionStorage.setItem("token",response.token);
+                                window.location.href = "index.html";
+                            },
+                            400: function(){
+                                alert("Ainda existem erros no login.");
+                            },
+                            401: function(){
+                              alert("Credenciais inválidas.")  
+                            },
+                            404: function(){
+                                alert("Ocorreu um erro na sua requisição. Estamos trabalhando nesta correção.");
+                            },
+                            500: function() {
+                                alert("Ops! Algo errado aconteceu. Tente novamente daqui alguns instantes.");
+                            }
+                        }
+                    });
                 }
             });
         }
