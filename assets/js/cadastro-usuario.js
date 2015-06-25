@@ -111,28 +111,24 @@ var Cadastro = function () {
                 },
                 submitHandler: function (form) {
                     $.ajax({
-                        url: "http://localhost:3000/api/usuario",
+                        url: "http://colaborativebook.herokuapp.com/signin",
                         type: 'post',
                         dataType: 'json',
                         data: $("form").serialize(),
                         statusCode: {
                             200: function (response) {
-                                alert(JSON.stringify(response));
-                                sessionStorage.setItem("usuarioID",response.data._id);
-                                sessionStorage.setItem("nomeUsuario",response.data.nomeUsuario);
-                                sessionStorage.setItem("nomeCompleto",response.data.nomeCompleto);
-                                window.location.href = "index.html";
+                                login($('input#email').val(), $('input#password').val());
                             },
-                            400: function(){
+                            400: function () {
                                 alert("Ainda existem erros no cadastro.");
                             },
-                            404: function(){
+                            404: function () {
                                 alert("Ocorreu um erro na sua requisição. Estamos trabalhando nesta correção.");
                             },
                             409: function () {
                                 alert("Nome de usuário ou email já cadastrados.");
                             },
-                            500: function() {
+                            500: function () {
                                 alert("Ops! Algo errado aconteceu. Tente novamente daqui alguns instantes.");
                             }
                         }
@@ -140,6 +136,36 @@ var Cadastro = function () {
                 }
             });
         }
+    };
+
+    var login = function (email, senha) {
+        var body = {
+            password: senha,
+            username: email
+        };
+        
+        $.ajax({
+            url: "http://colaborativebook.herokuapp.com/login",
+            type: 'post',
+            dataType: 'json',
+            data: body,
+            statusCode: {
+                200: function (response) {
+                    sessionStorage.setItem("usuario", JSON.stringify(response.user));
+                    sessionStorage.setItem("token", response.token);
+                    window.location.href = "index.html";
+                },
+                400: function () {
+                    alert("Ocorreu um erro ao entrar. Estamos trabalhando nesta correção.");
+                },
+                404: function () {
+                    alert("Ocorreu um erro na sua requisição. Estamos trabalhando nesta correção.");
+                },
+                500: function () {
+                    alert("Ops! Algo errado aconteceu. Tente novamente daqui alguns instantes.");
+                }
+            }
+        });
     };
 
     return {
