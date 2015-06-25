@@ -71,7 +71,7 @@ var Login = function () {
     /* * * * * * * * * * * *
      * Vaidação de Login
      * * * * * * * * * * * */
-    var initLoginValidation = function () {      
+    var initLoginValidation = function () {
         if ($.validator) {
             $('.login-form').validate({
                 invalidHandler: function (event, validator) {
@@ -81,28 +81,26 @@ var Login = function () {
                 },
                 submitHandler: function (form) {
                     $.ajax({
-                        url: "http://localhost:3000/login",
+                        url: "http://colaborativebook.herokuapp.com/login",
                         type: 'post',
                         dataType: 'json',
                         data: $("form").serialize(),
                         statusCode: {
                             200: function (response) {
-                                alert(JSON.stringify(response));
-                                sessionStorage.setItem("usuarioID",response.user._id);
-                                sessionStorage.setItem("nomeUsuario",response.user.nomeUsuario);
-                                sessionStorage.setItem("token",response.token);
+                                sessionStorage.setItem("usuario", JSON.stringify(response.user));
+                                sessionStorage.setItem("token", response.token);
                                 window.location.href = "index.html";
                             },
-                            400: function(){
+                            400: function () {
                                 alert("Ainda existem erros no login.");
                             },
-                            401: function(){
-                              alert("Credenciais inválidas.")  
+                            401: function () {
+                                alert("Credenciais inválidas.");
                             },
-                            404: function(){
+                            404: function () {
                                 alert("Ocorreu um erro na sua requisição. Estamos trabalhando nesta correção.");
                             },
-                            500: function() {
+                            500: function () {
                                 alert("Ops! Algo errado aconteceu. Tente novamente daqui alguns instantes.");
                             }
                         }
@@ -110,14 +108,14 @@ var Login = function () {
                 }
             });
         }
-    }
+    };
 
     return {
         init: function () {
             // Validações
             initValidationDefaults();
-            initLoginValidation(); 
-        },
+            initLoginValidation();
+        }
     };
 
 }();
