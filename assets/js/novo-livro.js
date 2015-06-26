@@ -1,14 +1,11 @@
 var NovoLivro = {};
 
-$(function(){
-    
+$(function () {
+
     $("#form-livro").validate({
-        
         errorClass: "has-error",
         validClass: "has-success",
-        
-        rules: {         
-            
+        rules: {
             titulo: {
                 required: true
             },
@@ -25,48 +22,57 @@ $(function(){
                 required: true
             }
         },
-        
-        submitHandler: function() {
-            
-            if ($("form").valid()){  
+        submitHandler: function () {
+
+            if ($("form").valid()) {
                 NovoLivro.salvar();
-                window.location.href = "meus-livros.html";
             }
-            
+
         }
-        
+
     });
-    
+
 });
 
 NovoLivro.salvar = function () {
-    
-    var livros = [];
-  
-    if (localStorage.getItem("livros") !== "") {    
-        livros = $.makeArray($.parseJSON(localStorage.getItem("livros")));        
-    }
-    
-    var id = livros.length;
-    
-    var novoLivro = { livro: { id: id++, 
-        titulo: $("#titulo").val(),  
-        genero: $("#genero option:selected").text(),
-        enredo: $("#enredo").val(),
-        personagens: $("#personagens").val(),
-        ambientacao: $("#ambientacao").val() } };
 
-    livros.push(novoLivro);
-    
-    localStorage.setItem("livros", JSON.stringify(livros));
-    
+    $.ajax({
+        url: "http://colaborativebook.herokuapp.com/api/livro",
+        type: 'post',
+        dataType: 'json',
+        beforeSend: function(xhr){
+                xhr.setRequestHeader('X-Access-Token', sessionStorage.getItem("token"));
+        },
+        data: $("form").serialize(),
+        statusCode: {
+            200: function (response) {
+                alert(JSON.stringify(response));
+                window.location.href = "meus-livros.html";
+            },
+            400: function () {
+                alert("Ainda existem erros no cadastro do novo livro.");
+            },
+            401: function (){
+                window.location.href = "login.html";
+                NovoLivro.salvar();
+            },
+            404: function () {
+                alert("Ocorreu um erro na sua requisição. Estamos trabalhando nesta correção.");
+            },
+            500: function () {
+                alert("Ops! Algo errado aconteceu. Tente novamente daqui alguns instantes.");
+            }
+        }
+    });
+
 };
 
 
 NovoLivro.init = function () {
-    
-    $(".nomeusuario").append(localStorage.getItem("username"));
+
+    var nomeUsuario = $.parseJSON(sessionStorage.getItem("usuario")).nomeUsuario;
+    $(".nomeusuario").append(nomeUsuario);  
     $('select').select2();
-    
+
 };
     

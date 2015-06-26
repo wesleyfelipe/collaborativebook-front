@@ -13,7 +13,6 @@ var MeusLivros = function () {
     };
 
     var exibeLivro = function (livro) {
-        alert(JSON.stringify(livro));
         $('table#catalogo tr:last').after(
             "<tr><td class='align-center'><ul class='table-controls'><li><a href='livro.html'\n\
             class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> \n\
