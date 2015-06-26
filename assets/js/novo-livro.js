@@ -46,7 +46,6 @@ NovoLivro.salvar = function () {
         data: $("form").serialize(),
         statusCode: {
             200: function (response) {
-                alert(JSON.stringify(response));
                 window.location.href = "meus-livros.html";
             },
             400: function () {
