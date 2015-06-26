@@ -7,9 +7,8 @@ var Perfil = function () {
     "use strict";
 
     var preencherInfoPerfil = function () {
-        var usuarioID = sessionStorage.getItem("usuarioID");
         $.ajax({
-            url: "http://localhost:3000/api/usuario/" + usuarioID,
+            url: "http://colaborativebook.herokuapp.com/api/user",
             type: 'get',
             beforeSend: function(xhr){
                 xhr.setRequestHeader('X-Access-Token', sessionStorage.getItem("token"));
