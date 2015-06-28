@@ -42,12 +42,12 @@
         <script src="plugins/select2/select2.min.js"></script>
 
         <!-- App -->
+        <script type="text/javascript" src="assets/js/novo-capitulo.js"></script>
         <script>
             $(document).ready(function () {
                 "use strict";
 
-                $(".nomeusuario").append(localStorage.getItem("username"));
-                $('select').select2();
+                NovoCapitulo.init();
 
             });
         </script>
@@ -118,27 +118,26 @@
             <div id="content">
                 <div class="container">
                     <div class="row" style="margin-top: 100px;">
-                        <form class="form-horizontal novo-livro-form" action="livro.html" method="post">
-
+                        <form class="form-horizontal novo-livro-form" action="livro.html" method="post" id="form-capitulo">
 
                             <div class="col-md-8 centered">
                                 <div class="widget">
                                     <div class="widget-content">
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Título:</label>
-                                            <div class="col-md-10"><input type="text" name="titulo" class="form-control" autofocus="autofocus" required data-rule-required data-msg-required="Por favor, informe um título."></div>
+                                            <div class="col-md-10"><input type="text" id="titulo" name="titulo" class="form-control" autofocus="autofocus" required data-rule-required data-msg-required="Por favor, informe um título."></div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Texto: </label>
-                                            <div class="col-md-10"><textarea rows="50" cols="5" name="textarea" class="form-control" required></textarea></div>
+                                            <div class="col-md-10"><textarea id="texto" rows="50" cols="5" name="textarea" class="form-control" required></textarea></div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-lg btn-primary" style="float: right;">Salvar</button>
-                                            <a href="livro.html">
-                                                <button type="button" class="btn btn-lg" style="float: right">
-                                                    Cancelar
-                                                </button>
-                                            </a>
+                                            <button type="submit" class="btn btn-lg btn-primary" style="float: right;">
+                                                Salvar
+                                            </button>
+                                            <button type="button" id="cancelar" class="btn btn-lg" style="float: right">
+                                                Cancelar
+                                            </button>
                                         </div>
 
                                     </div>

@@ -19,7 +19,7 @@ var Livro = function () {
 
     var apresentarCapitulos = function (capitulos) {
         for (var i in capitulos) {
-            if(capitulos[i].aprovado)
+            if (capitulos[i].aprovado)
                 exibirCapitulo(capitulos[i]);
             else
                 exibirCapituloNaoAprovado(capitulos[i]);
@@ -28,14 +28,14 @@ var Livro = function () {
 
     var exibirCapituloAprovado = function (capitulo) {
         $('table#capitulos tr:last').after("<tr><td class='align-center'><ul class='table-controls'>\n\
-        <li><a href='capitulo.html?idLivro="+ $.urlParam("idLivro") +"&idCapitulo="+capitulo._id+"' class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> </li>\n\
+        <li><a href='capitulo.html?idLivro=" + $.urlParam("idLivro") + "&idCapitulo=" + capitulo._id + "' class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> </li>\n\
         <li><a href='javascript:void(0);' class='bs-tooltip' title='Deletar'><i class='icon-trash'></i></a> </li>\n\
         </ul></td><td>" + capitulo.titulo + "</td><td>" + capitulo.autor + "</td></tr>");
     };
-    
-    var exibirCapituloNaoAprovado = function(capitulo){
+
+    var exibirCapituloNaoAprovado = function (capitulo) {
         $('table#capitulos-para-aprovacao tr:last').after("<tr><td class='align-center'><ul class='table-controls'>\n\
-        <li><a href='capitulo.html?idLivro="+ $.urlParam("idLivro") +"&idCapitulo="+capitulo._id+"' class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> </li>\n\
+        <li><a href='capitulo.html?idLivro=" + $.urlParam("idLivro") + "&idCapitulo=" + capitulo._id + "' class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> </li>\n\
         <li><a href='javascript:void(0);' class='bs-tooltip' title='Deletar'><i class='icon-trash'></i></a> </li>\n\
         <li><a href='javascript:void(0);' class='bs-tooltip' title='Aprovar'><i class='icon-check'></i></a> </li>\n\
         </ul></td><td>" + capitulo.titulo + "</td><td>" + capitulo.autor + "</td></tr>");
@@ -105,6 +105,12 @@ var Livro = function () {
         });
     };
 
+    var escreverCapitulo = function () {
+        $("button#criar-capitulo").click(function () {
+            window.location.href = "novo-capitulo.html?idLivro=" + $.urlParam("idLivro");
+        });
+    };
+
     return {
         init: function () {
             var nomeUsuario = $.parseJSON(sessionStorage.getItem("usuario")).nomeUsuario;
@@ -113,6 +119,7 @@ var Livro = function () {
 
             recuperarLivro();
             recuperarCapitulos();
+            escreverCapitulo();
         }
     };
 
