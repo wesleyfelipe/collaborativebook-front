@@ -123,9 +123,7 @@
                 <h2>Informações de perfil</h2>
 
                 <br>
-                <label for="#username">Username</label>
-                <span id="username">Username</span>
-
+                
                 <br>
                 <label for="#nome">Nome</label>
                 <span id="nome">Nome</span>
@@ -157,7 +155,7 @@
             <!-- /Info Perfil -->
 
             <!--=== Edicao Perfil ===-->
-            <form class="perfil-form perfil-info hidden" method="post">
+            <form id="edicao-form" class="perfil-form perfil-info hidden" method="post">
 
                 <br>
                 <h2>Editar perfil</h2>
@@ -172,7 +170,7 @@
                 <!-- Input Fields -->
                 <div class="form-group">
                     <label for="#nome">Nome</label>
-                    <input type="text" id="nome" name="nome-completo" class="form-control form-edit" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe seu nome completo."/>
+                    <input type="text" id="nome" name="nomeCompleto" class="form-control form-edit" autofocus="autofocus" data-rule-required="true" data-msg-required="Por favor, informe seu nome completo."/>
 
                 </div>
 
@@ -210,7 +208,7 @@
 
                 <!-- Form Actions -->
                 <div class="buttons">
-                    <button id="salvar-alteracoes" type="submit" class="btn btn-primary pull-left">
+                    <button id="salvar-alteracoes" type="button" class="btn btn-primary pull-left">
                         Confirmar
                     </button>
                     <button id="cancelar-alteracao-perfil" type="button" class="btn btn-primary pull-left">
