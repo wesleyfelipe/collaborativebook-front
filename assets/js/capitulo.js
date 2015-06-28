@@ -6,29 +6,63 @@ var Capitulo = function () {
 
     "use strict";
 
-    //variaveis
+    $.urlParam = function (sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1];
+            }
+        }
+    };
+
+    var recuperarCapitulo = function () {
+        $.ajax({
+            url: "http://colaborativebook.herokuapp.com/api/capitulo/" + $.urlParam("idCapitulo"),
+            type: 'get',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-Access-Token', sessionStorage.getItem("token"));
+            },
+            response: {
+                format: 'json'
+            },
+            statusCode: {
+                200: function (response) {
+                    apresentarCapitulo(response);
+                },
+                401: function (response) {
+                    window.location.href = "login.html";
+                },
+                404: function () {
+                    alert("Ocorreu um erro na sua requisição. Estamos trabalhando nesta correção.");
+                },
+                500: function () {
+                    alert("Ops! Algo errado aconteceu. Tente novamente daqui alguns instantes.");
+                }
+            }
+        });
+    };
+
+    var apresentarCapitulo = function (capitulo) {
+        $("#titulo-capitulo").text(capitulo.titulo);
+        $("#texto-capitulo").text(capitulo.texto);
+        $("#autor-capitulo").text(capitulo.autor.nomeCompleto);
+
+    };
     
-    //capitulo de exemplo
-    var cap = {titulo: "Leis Fundamentais da robótica", texto: "1ª Lei: Um robô não pode ferir um ser humano ou, por inação, permitir que um ser humano sofra algum mal.\n"+
-                "2ª Lei: Um robô deve obedecer as ordens que lhe sejam dadas por seres humanos exceto nos casos em que tais ordens entrem em conflito com a Primeira Lei.\n"+
-                "3ª Lei: Um robô deve proteger sua própria existência desde que tal proteção não entre em conflito com a Primeira ou Segunda Leis.", autor: "Isaac Asimov"};
-    
-    //funções
-    
-    //TODO: Solução provisória usando lista estática
-    var apresentarCapitulo = function () {
-        
-        $("#titulo-capitulo").text(cap.titulo);
-        $("#texto-capitulo").text(cap.texto);
-        $("#autor-capitulo").text(cap.autor);       
-        
+    var voltar = function(){
+        $("button#voltar").click(function () {
+            window.location.href = "livro.html?idLivro="+$.urlParam("idLivro");
+        });
     };
 
     return {
         init: function () {
             $(".nomeusuario").append(localStorage.getItem("username"));
             $('select').select2();
-            apresentarCapitulo();
+            recuperarCapitulo();
+            voltar();
         }
     };
 
