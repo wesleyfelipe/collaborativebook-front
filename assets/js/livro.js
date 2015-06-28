@@ -21,11 +21,17 @@ var Livro = function () {
 //        personagens: "Não há", ambientação: "Não há", capitulos: capitulosLivro, capitulosAprovacao: capitulosAprovacaoLivro};
 
 
-    $.urlParam = function (name) {
-        var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
-        return results[1] || 0;
+    $.urlParam = function (sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++){
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] === sParam){
+                return sParameterName[1];
+            }
+        }
     };
-    
+
     //funções
     var apresentarLivro = function (livro) {
 
@@ -53,10 +59,10 @@ var Livro = function () {
 //                </ul></td><td>" + livro.capitulosAprovacao[i].titulo + "</td><td>" + livro.capitulosAprovacao[i].autor + "</td></tr>");
 //        }
     };
-    
-    var recuperarLivro = function(){
+
+    var recuperarLivro = function () {
         $.ajax({
-            url: "http://colaborativebook.herokuapp.com/api/livro/" + $.urlParam("idLivro") ,
+            url: "http://colaborativebook.herokuapp.com/api/livro/" + $.urlParam("idLivro"),
             type: 'get',
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('X-Access-Token', sessionStorage.getItem("token"));
@@ -86,7 +92,7 @@ var Livro = function () {
             var nomeUsuario = $.parseJSON(sessionStorage.getItem("usuario")).nomeUsuario;
             $(".nomeusuario").append(nomeUsuario);
             $('select').select2();
-            
+
             recuperarLivro();
         }
     };

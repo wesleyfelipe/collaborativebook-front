@@ -14,12 +14,12 @@ var MeusLivros = function () {
 
     var exibeLivro = function (livro) {
         $('table#catalogo tr:last').after(
-            "<tr><td class='align-center'><ul class='table-controls'><li><a href='livro.html'\n\
+            "<tr><td class='align-center'><ul class='table-controls'><li><a href='livro.html?idLivro="+ livro._id +"'\n\
             class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> \n\
             </li><li><a href='javascript:void(0);' class='bs-tooltip'\n\
             title='Deletar'><i class='icon-trash'></i></a> </li></ul></td><td>"
             + livro.titulo + "</td><td>" + livro.genero + "</td></tr>");
-    }
+    };
 
     var recuperarLivros = function () {
         $.ajax({
