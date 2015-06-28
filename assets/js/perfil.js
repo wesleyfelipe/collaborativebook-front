@@ -7,32 +7,37 @@ var Perfil = function () {
     "use strict";
 
     var preencherInfoPerfil = function () {
+        var usuario = $.parseJSON(sessionStorage.getItem("usuario"));
+        $("span#nome").text(usuario.nomeCompleto);
+        $("span#username").text(usuario.nomeUsuario);
+        $("span#email").text(usuario.email);
+        var nascimento = new Date(usuario.nascimento);
+        $("span#nascimento").text(formatarData(nascimento));
+        $("span#genero").text(usuario.genero);
+        $("img#img-perfil").attr("src", usuario.imagemPerfil);
+    };
+
+    var recuperarInfoUsuario = function () {
         $.ajax({
             url: "http://colaborativebook.herokuapp.com/api/user",
             type: 'get',
-            beforeSend: function(xhr){
+            beforeSend: function (xhr) {
                 xhr.setRequestHeader('X-Access-Token', sessionStorage.getItem("token"));
             },
             response: {
                 format: 'json'
             },
-            statusCode:{
+            statusCode: {
                 200: function (response) {
-                    $("span#username").text(response.nomeUsuario);
-                    $("span#nome").text(response.nomeCompleto);
-                    $("span#email").text(response.email);
-                    var nascimento = new Date(response.nascimento);
-                    $("span#nascimento").text(formatarData(nascimento));
-                    $("span#genero").text(response.genero);
-                    $("img#img-perfil").attr("src", response.imagemPerfil);
+                    sessionStorage.setItem("usuario", JSON.stringify(response));
                 },
-                401: function(response){
+                401: function (response) {
                     window.location.href = "login.html";
                 },
-                404: function(){
+                404: function () {
                     alert("Ocorreu um erro na sua requisição. Estamos trabalhando nesta correção.");
                 },
-                500: function() {
+                500: function () {
                     alert("Ops! Algo errado aconteceu. Tente novamente daqui alguns instantes.");
                 }
             }
@@ -41,13 +46,14 @@ var Perfil = function () {
 
     var editarPerfil = function () {
         $("button#editar-perfil").click(function () {
+            var usuario = $.parseJSON(sessionStorage.getItem("usuario"));
             //ocultando campos de apresentacao
             $("div#apresentacao-perfil").addClass("hidden");
             //populando campos de input
-            $("input#nome").attr("value", $("span#nome").text());
-            $("input#email").attr("value", $("span#email").text());
-            $("input#nascimento").attr("value", $("span#nascimento").text());
-            if ($("span#genero").text() === "masculino") {
+            $("input#nome").attr("value", usuario.nomeCompleto);
+            $("input#email").attr("value", usuario.email);
+            $("input#nascimento").attr("value", usuario.nascimento);
+            if (usuario.genero === "masculino") {
                 $("input#masculino").prop("checked", true);
             } else {
                 $("input#feminino").prop("checked", true);
@@ -81,23 +87,53 @@ var Perfil = function () {
         });
     };
 
-    //TODO: Solução temporária utilizando localStorage
     var salvarAlteracoes = function () {
-        localStorage.setItem("nomeCompleto", $("input:text[name=nome-completo]").val());
-        localStorage.setItem("email", $("input[name=email]").val());
-        localStorage.setItem("dataNascimento", $("input#nascimento").val());
-        localStorage.setItem("genero", $("input:radio[name=genero]:checked").val());
+
+        var usuario = $.parseJSON(sessionStorage.getItem("usuario"));
+
+        var dados = {
+            nomeCompleto: $("input:text[name=nome-completo]").val(),
+            email: $("input[name=email]").val(),
+            nascimento: $("input#nascimento").val(),
+            genero: $("input:radio[name=genero]:checked").val(),
+            imagemPerfil: usuario.imagemPerfil
+        };
+
+        $.ajax({
+            url: "http://colaborativebook.herokuapp.com/api/update",
+            type: 'put',
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-Access-Token', sessionStorage.getItem("token"));
+            },
+            data: dados,
+            statusCode: {
+                200: function (response) {
+                    sessionStorage.setItem("usuario", JSON.stringify(response));
+                },
+                400: function () {
+                    alert("Ainda existem erros nas suas alterações.");
+                },
+                401: function () {
+                    window.location.href = "login.html";
+                },
+                404: function () {
+                    alert("Ocorreu um erro na sua requisição. Estamos trabalhando nesta correção.");
+                },
+                500: function () {
+                    alert("Ops! Algo errado aconteceu. Tente novamente daqui alguns instantes.");
+                }
+            }
+        });
     };
 
     var formatarData = function (data) {
-        var dataFormatada =  (data.getDate()+1) + '/' + (data.getMonth() + 1) + '/' +  data.getFullYear();
+        var dataFormatada = (data.getDate() + 1) + '/' + (data.getMonth() + 1) + '/' + data.getFullYear();
         return dataFormatada;
     };
 
     var confirmarAlteracoes = function () {
-        //validarAlterações();
         salvarAlteracoes();
-        //populando campos de perfl
         preencherInfoPerfil();
         //exibindo infos do perfil
         $("form.perfil-form").addClass("hidden");
@@ -105,10 +141,8 @@ var Perfil = function () {
         $("div#apresentacao-perfil").removeClass("hidden");
     };
 
-    //TODO: Solução temporária utilizando localStorage
     var confirmarAlteracaoSenha = function () {
-        //SOLUCAO TEMPORARIA
-        localStorage.setItem("password", $("input:password[name=new_password]").val());
+        salvarAlteracoes();
         //exibindo infos do perfil
         $("form.alterar-senha-form").addClass("hidden");
         //escondendo campos de edicao
@@ -194,7 +228,7 @@ var Perfil = function () {
                 }
             });
         }
-    }
+    };
 
     /* * * * * * * * * * * *
      * Validacao de alteracao de perfil
@@ -224,9 +258,9 @@ var Perfil = function () {
      * Validacao de alteracao de senha
      * * * * * * * * * * * */
     var initAlteracaoSenhaValidation = function () {
-        //TODO: Solução temporária utilizando localStorage
+        //TODO: Solução temporária utilizando sessionStorage
         jQuery.validator.addMethod("senhaValida", function () {
-            return localStorage.getItem("password") === $("input:password[name=password]").val()
+            return sessionStorage.getItem("password") === $("input:password[name=password]").val();
         }, "Senha inválida.");
 
         if ($.validator) {
@@ -262,12 +296,13 @@ var Perfil = function () {
             initPerfilValidation();
             initAlteracaoSenhaValidation();
 
+            recuperarInfoUsuario();
             preencherInfoPerfil();
+
             editarPerfil();
             alterarSenha();
             cancelarAlteracaoSenha();
             cancelarAlteracaoPerfil();
-
         }
     };
 
