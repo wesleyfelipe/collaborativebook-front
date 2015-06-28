@@ -14,6 +14,10 @@ Perfil.preencherInfoPerfil = function () {
     $("img#img-perfil").attr("src", usuario.imagemPerfil);
 };
 
+
+$(function(){
+    Perfil.recuperarInfoUsuario();
+});
 Perfil.recuperarInfoUsuario = function () {
     $.ajax({
         url: "http://colaborativebook.herokuapp.com/api/user",
@@ -166,7 +170,7 @@ Perfil.salvarAlteracoes = function () {
 
 Perfil.confirmarAlteracoes = function () {
     Perfil.salvarAlteracoes();
-    Perfil.preencherInfoPerfil();
+    //Perfil.preencherInfoPerfil();
     //exibindo infos do perfil
     $("form.perfil-form").addClass("hidden");
     //escondendo campos de edicao
@@ -355,6 +359,8 @@ $(function () {
 });
 
 Perfil.init = function () {
+
+    Perfil.recuperarInfoUsuario();
 
     Perfil.editarPerfil();
     Perfil.confirmaEdicaoPerfil();

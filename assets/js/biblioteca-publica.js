@@ -41,9 +41,11 @@ var Biblioteca = function () {
     };
     
     var exibeLivro = function(livro){
+        var proprietario = livro.proprietario === null ? null : livro.proprietario.nomeCompleto;
+        
         $('table#catalogo tr:last').after("<tr><td class='align-center'><ul class='table-controls'>\n\
         <li><a href='livro.html?idLivro="+ livro._id +"' class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> </li>\n\
-        </ul></td><td>" + livro.titulo + "</td><td>" + livro.genero + "</td><td>" + livro.proprietario.nomeCompleto + "</td></tr>");
+        </ul></td><td>" + livro.titulo + "</td><td>" + livro.genero + "</td><td>" + proprietario + "</td></tr>");
     };
     
     return {

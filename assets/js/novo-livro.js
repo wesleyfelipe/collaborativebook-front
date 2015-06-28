@@ -34,14 +34,20 @@ $(function () {
 
 });
 
+$(function () {
+    $("button#cancelar").click(function () {
+        window.location.href = "meus-livros.html";
+    });
+});
+
 NovoLivro.salvar = function () {
 
     $.ajax({
         url: "http://colaborativebook.herokuapp.com/api/livro",
         type: 'post',
         dataType: 'json',
-        beforeSend: function(xhr){
-                xhr.setRequestHeader('X-Access-Token', sessionStorage.getItem("token"));
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('X-Access-Token', sessionStorage.getItem("token"));
         },
         data: $("form").serialize(),
         statusCode: {
@@ -51,7 +57,7 @@ NovoLivro.salvar = function () {
             400: function () {
                 alert("Ainda existem erros no cadastro do novo livro.");
             },
-            401: function (){
+            401: function () {
                 window.location.href = "login.html";
                 NovoLivro.salvar();
             },
@@ -70,7 +76,7 @@ NovoLivro.salvar = function () {
 NovoLivro.init = function () {
 
     var nomeUsuario = $.parseJSON(sessionStorage.getItem("usuario")).nomeUsuario;
-    $(".nomeusuario").append(nomeUsuario);  
+    $(".nomeusuario").append(nomeUsuario);
     $('select').select2();
 
 };

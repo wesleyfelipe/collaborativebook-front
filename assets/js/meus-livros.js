@@ -10,7 +10,7 @@ MeusLivros.initCatalogo = function (livros) {
     }
 };
 
-MeusLivros.excluirLivro = function(idLivro) {
+MeusLivros.excluirLivro = function (idLivro) {
     $.ajax({
         url: "http://colaborativebook.herokuapp.com/api/livro/" + idLivro,
         type: 'delete',
@@ -22,7 +22,7 @@ MeusLivros.excluirLivro = function(idLivro) {
         },
         statusCode: {
             200: function (response) {
-                window.location.href = "meus-livros.html";
+                window.location.reload(true);
             },
             401: function (response) {
                 window.location.href = "login.html";
@@ -58,7 +58,7 @@ MeusLivros.recuperarLivros = function () {
         },
         statusCode: {
             200: function (response) {
-               MeusLivros.initCatalogo(response);
+                MeusLivros.initCatalogo(response);
             },
             401: function (response) {
                 window.location.href = "login.html";
