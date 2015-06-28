@@ -114,7 +114,8 @@ Livro.excluirCapitulo = function(idLivro, idCapitulo){
         },
         statusCode: {
             200: function (response) {
-                window.location.href = "livro.html?idLivro=" + idLivro;
+                Livro.recuperarCapitulos();
+                window.location.reload(true);
             },
             401: function (response) {
                 window.location.href = "login.html";
@@ -141,7 +142,7 @@ Livro.aprovarCapitulo = function(idLivro, idCapitulo){
         },
         statusCode: {
             200: function (response) {
-                window.location.href = "livro.html?idLivro=" + idLivro;
+                window.location.reload(true);
             },
             401: function (response) {
                 window.location.href = "login.html";
@@ -166,6 +167,9 @@ Livro.init = function () {
     var nomeUsuario = $.parseJSON(sessionStorage.getItem("usuario")).nomeUsuario;
     $(".nomeusuario").append(nomeUsuario);
     $('select').select2();
+    
+    Livro.recuperarLivro();
+    Livro.recuperarCapitulos();
     
     Livro.escreverCapitulo();
 };
