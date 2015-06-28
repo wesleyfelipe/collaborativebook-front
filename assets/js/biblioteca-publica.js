@@ -42,8 +42,8 @@ var Biblioteca = function () {
     
     var exibeLivro = function(livro){
         $('table#catalogo tr:last').after("<tr><td class='align-center'><ul class='table-controls'>\n\
-        <li><a href='livro.html' class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> </li>\n\
-        </ul></td><td>" + livro.titulo + "</td><td>" + livro.genero + "</td><td>" + livro.proprietario + "</td></tr>");
+        <li><a href='livro.html?idLivro="+ livro._id +"' class='bs-tooltip' title='Visualizar'><i class='icon-search'></i></a> </li>\n\
+        </ul></td><td>" + livro.titulo + "</td><td>" + livro.genero + "</td><td>" + livro.proprietario.nomeCompleto + "</td></tr>");
     };
     
     return {
